@@ -2561,17 +2561,38 @@ const getAccent = (title) => SERVICE_ACCENTS[title] || "#10b981";
 
    Everything animated here is transform/filter/opacity only: no layout,
    no paint of children, so it stays on the compositor at 60fps. */
+/* ---------------------------- PAGE TRANSITIONS ----------------------------
+   Cinematic "Rack Focus" transition. Uses a deep 16px blur paired with a 
+   subtle Z-axis scale shift to mimic a camera lens pulling focus between 
+   scenes, staying entirely on the GPU for 60fps performance. 
+-------------------------------------------------------------------------- */
 const PAGE_EASE = [0.22, 1, 0.36, 1];
 
 const pageVariants = {
-  initial: { opacity: 0, y: 8, scale: 0.994, filter: "blur(6px)" },
+  initial: { 
+    opacity: 0, 
+    filter: "blur(16px)", 
+    scale: 0.95, 
+    y: 12 
+  },
   animate: {
-    opacity: 1, y: 0, scale: 1, filter: "blur(0px)",
-    transition: { duration: 0.5, ease: PAGE_EASE, opacity: { duration: 0.34, ease: "easeOut" } },
+    opacity: 1, 
+    filter: "blur(0px)", 
+    scale: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.85, 
+      ease: PAGE_EASE, 
+      opacity: { duration: 0.5, ease: "linear" },
+      filter: { duration: 0.85, ease: "easeOut" }
+    },
   },
   exit: {
-    opacity: 0, y: -6, scale: 0.997, filter: "blur(4px)",
-    transition: { duration: 0.28, ease: [0.4, 0, 1, 1] },
+    opacity: 0, 
+    filter: "blur(12px)", 
+    scale: 1.03, 
+    y: -12,
+    transition: { duration: 0.4, ease: [0.4, 0, 1, 1] },
   },
 };
 
@@ -2579,8 +2600,8 @@ const pageVariants = {
    drop the movement and the blur. */
 const pageVariantsReduced = {
   initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 0.2 } },
-  exit: { opacity: 0, transition: { duration: 0.15 } },
+  animate: { opacity: 1, transition: { duration: 0.25 } },
+  exit: { opacity: 0, transition: { duration: 0.2 } },
 };
 
 const PageWrapper = memo(function PageWrapper({ children, className = "" }) {
@@ -2591,21 +2612,14 @@ const PageWrapper = memo(function PageWrapper({ children, className = "" }) {
       initial="initial"
       animate="animate"
       exit="exit"
-      /* Promote to its own layer for the duration of the transition, then
-         hand it back so idle pages don't hold GPU memory hostage. */
+      /* Promote to its own layer for the duration of the transition */
       style={{ willChange: "transform, opacity, filter" }}
-      onAnimationComplete={(def) => {
-        if (def === "animate") {
-          /* transition finished — stop hinting the compositor */
-        }
-      }}
       className={`relative z-10 pb-16 md:pb-0 ${className}`}
     >
       {children}
     </motion.main>
   );
 });
-
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
   useEffect(() => {

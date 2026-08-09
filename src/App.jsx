@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
+import { BrowserRouter, useLocation, useNavigate } from "react-router-dom";
 /* ============================================================================
    LOCAL DATA LAYER — 100% frontend, no backend.
    ----------------------------------------------------------------------------
@@ -1646,6 +1647,40 @@ const NAV_ITEMS = [
   { id: "donateus", label: "Donate Us", accent: true },
   { id: "contact", label: "Contact" },
 ];
+
+/* ------------------------------------------------------------------ */
+/* REAL URL ROUTING                                                    */
+/* Every "view" the app already knows about (home, releases, artists,  */
+/* about, events, services, donateus, admin, contact, privacy, terms)  */
+/* now maps 1:1 onto a real browser URL — wildwoodrecords.in/artists,  */
+/* /events, etc. — instead of only ever living at "/" behind a piece   */
+/* of React state.                                                     */
+/*                                                                      */
+/* Deliberately minimal: rather than rewriting every page into         */
+/* <Routes>/<Route> elements, AppShell's `view`/`setView` pair is kept */
+/* exactly as every component already expects it — only WHERE that     */
+/* pair comes from changes, from useState to the real URL via          */
+/* react-router's useLocation()/useNavigate(). Nav, Footer, Home, and  */
+/* every setView("x") call across the file needed zero changes.        */
+/*                                                                      */
+/* KNOWN_VIEWS is the single source of truth for which paths are real. */
+/* Visiting anything else (a typo, an old bookmark) falls back to the  */
+/* home view rather than rendering a blank page.                      */
+/* ------------------------------------------------------------------ */
+const KNOWN_VIEWS = new Set([
+  "home", "releases", "artists", "about", "events", "services",
+  "donateus", "admin", "contact", "privacy", "terms",
+]);
+
+function pathToView(pathname) {
+  const id = pathname.replace(/^\/+/, "").replace(/\/+$/, "");
+  if (id === "") return "home";
+  return KNOWN_VIEWS.has(id) ? id : "home";
+}
+
+function viewToPath(id) {
+  return id === "home" ? "/" : `/${id}`;
+}
 
 /* ------------------------------------------------------------------ */
 /* SERVICES DATA                                                       */
@@ -6172,7 +6207,18 @@ const ScrollProgressBar = memo(function ScrollProgressBar() {
 
 function AppShell() {
   const { isDark } = useTheme();
-  const [view, setView] = useState("home");
+
+  /* `view` now comes from the real URL, and `setView` now performs a
+     real navigation — both keep the exact same name/shape every
+     existing component already calls, so Nav, Footer, Home, Services,
+     and backToTrackListing() below are all untouched. */
+  const location = useLocation();
+  const navigate = useNavigate();
+  const view = pathToView(location.pathname);
+  const setView = useCallback((id) => {
+    navigate(viewToPath(id));
+  }, [navigate]);
+
   const [selectedRelease, setSelectedRelease] = useState(null);
 
   /* ------------------------- PLAYBACK STATE -------------------------
@@ -6725,13 +6771,17 @@ const TermsAndConditions = memo(function TermsAndConditions() {
   );
 });
 
-/* Default export: the whole app wrapped in the ThemeProvider so every
-   component (pages, nav, footer, modal, player, background layers) can
-   read and react to the current theme via useTheme(). */
+/* Default export: BrowserRouter gives every view a real URL (so
+   AppShell's useLocation()/useNavigate() below have something to read
+   from), wrapping ThemeProvider so every component (pages, nav, footer,
+   modal, player, background layers) can still read/react to the current
+   theme via useTheme() exactly as before. */
 export default function App() {
   return (
-    <ThemeProvider>
-      <AppShell />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
+        <AppShell />
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }

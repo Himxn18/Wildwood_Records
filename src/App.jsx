@@ -2984,10 +2984,159 @@ const Nav = memo(function Nav({ view, setView }) {
     </header>
   );
 });
+
+
+/* ------------------------------- FOOTER ------------------------------- */
+
 /* ------------------------------- FOOTER ------------------------------- */
 
 /* ------------------------------- FOOTER ------------------------------- */
 
+/* ------------------------------------------------------------------ */
+/* LOCAL LINKEDIN ICON — same hand-drawn style as the Instagram/       */
+/* YouTube/Spotify icons already defined in this file.                 */
+/* ------------------------------------------------------------------ */
+function LinkedInIcon({ size = 14, className = "", style }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} style={style}>
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.44-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.11 20.45H3.56V9h3.55v11.45z" />
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* DEV CREDITS — premium signature badge, tuned to feel alive on touch */
+/* devices too. Three layers of "expensive":                           */
+/*   1. A slow-rotating conic-gradient hairline traces the pill's edge  */
+/*      PERMANENTLY (not just on hover) — the ambient shimmer premium   */
+/*      products use, identical on mobile and desktop, no pointer       */
+/*      required.                                                       */
+/*   2. Each name gets its own soft glow-pulsing dot, staggered by      */
+/*      index, so the row visibly breathes with zero interaction.       */
+/*   3. Tapping (mobile) or hovering (desktop) a name — driven by BOTH   */
+/*      Framer Motion's onHoverStart/End AND onTapStart/onTap, so touch  */
+/*      gets the exact same payoff a cursor does — flares to full        */
+/*      brightness in that developer's accent color, reveals their       */
+/*      LinkedIn glyph, grows an accent-colored underline, and dims      */
+/*      the other two names. The tap state auto-releases after a beat    */
+/*      so it reads as a deliberate flash, not a stuck toggle.           */
+/* ------------------------------------------------------------------ */
+const DEV_ACCENTS = ["#34d399", "#38bdf8", "#f472b6"]; // emerald / sky / pink — one per name, cycling
+
+const DevCreditsBadge = memo(function DevCreditsBadge({ developers }) {
+  const { isDark } = useTheme();
+  const [activeIdx, setActiveIdx] = useState(null);
+
+  return (
+    <div className="relative inline-block">
+      <style>{`
+        @keyframes devBorderSpin { to { transform: rotate(360deg); } }
+        .dev-badge-border { animation: devBorderSpin 6s linear infinite; }
+        @keyframes devNamePulse {
+          0%, 100% { opacity: 0.55; transform: scale(1); }
+          50%      { opacity: 1; transform: scale(1.35); }
+        }
+        .dev-name-pulse { animation: devNamePulse 2.6s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) {
+          .dev-badge-border { animation: none; }
+          .dev-name-pulse { animation: none; opacity: 0.85; }
+        }
+      `}</style>
+
+      {/* Layer 1 — the permanent rotating hairline. A conic gradient sits
+          behind an opaque glass panel, so only a thin arc of it is ever
+          visible at once — the "spinning border" premium badges use,
+          built from two stacked layers rather than a border-image hack. */}
+      <div
+        aria-hidden="true"
+        className="dev-badge-border pointer-events-none absolute -inset-px rounded-full opacity-70"
+        style={{
+          background: `conic-gradient(from 0deg, transparent 0%, ${isDark ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.55)"} 8%, transparent 24%, transparent 100%)`,
+        }}
+      />
+
+      <div
+        className={`relative flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-3 px-8 py-4 rounded-full border backdrop-blur-xl transition-all duration-700 ${
+          isDark
+            ? "bg-black/60 border-white/10 shadow-[0_0_50px_-15px_rgba(255,255,255,0.12)]"
+            : "bg-white/70 border-black/10 shadow-[0_0_50px_-15px_rgba(0,0,0,0.1)]"
+        }`}
+      >
+        <span className="text-[10px] tracking-[0.25em] font-bold uppercase text-neutral-500 flex items-center gap-2">
+          <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+          </span>
+          Engineered &amp; Crafted By
+        </span>
+
+        <span className={`hidden sm:block w-px h-4 ${isDark ? "bg-white/20" : "bg-black/20"}`} aria-hidden="true" />
+
+        <div className="flex flex-wrap items-center justify-center gap-3 text-[11px] font-bold tracking-[0.18em] uppercase">
+          {developers.map((dev, i) => {
+            const accent = DEV_ACCENTS[i % DEV_ACCENTS.length];
+            const isActive = activeIdx === i;
+            const isDimmed = activeIdx !== null && !isActive;
+
+            return (
+              <React.Fragment key={dev.name}>
+                <motion.a
+                  href={dev.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onHoverStart={() => setActiveIdx(i)}
+                  onHoverEnd={() => setActiveIdx(null)}
+                  onTapStart={() => setActiveIdx(i)}
+                  onTap={() => setTimeout(() => setActiveIdx((cur) => (cur === i ? null : cur)), 900)}
+                  whileTap={{ scale: 0.94 }}
+                  animate={{
+                    opacity: isDimmed ? 0.35 : 1,
+                    scale: isActive ? 1.08 : 1,
+                    y: isActive ? -2 : 0,
+                  }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative inline-flex items-center gap-1.5"
+                  style={{ color: isActive ? accent : undefined }}
+                >
+                  <span
+                    className="w-1 h-1 rounded-full dev-name-pulse"
+                    style={{
+                      backgroundColor: accent,
+                      boxShadow: isActive ? `0 0 8px 2px ${accent}` : `0 0 4px 1px ${accent}55`,
+                      animationDelay: `${i * 0.4}s`,
+                    }}
+                    aria-hidden="true"
+                  />
+                  <span className={isActive ? "" : isDark ? "text-neutral-300" : "text-neutral-700"}>
+                    {dev.name}
+                  </span>
+                  <LinkedInIcon
+                    size={11}
+                    className="transition-all duration-500"
+                    style={{ opacity: isActive ? 1 : 0.35, color: isActive ? accent : undefined }}
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-1.5 left-0 h-[1.5px] origin-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                    style={{
+                      width: isActive ? "100%" : "0%",
+                      backgroundColor: accent,
+                      boxShadow: `0 0 6px ${accent}`,
+                    }}
+                  />
+                </motion.a>
+
+                {i < developers.length - 1 && (
+                  <span className={`opacity-30 px-0.5 font-light ${isDark ? "text-white" : "text-black"}`}>&times;</span>
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+});
 const Footer = memo(function Footer({ setView }) {
   const { isDark } = useTheme();
   const go = (id) => {
@@ -2995,6 +3144,13 @@ const Footer = memo(function Footer({ setView }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const colHead = "text-xs tracking-[0.25em] uppercase text-neutral-500 mb-6 font-semibold";
+
+  // Add your LinkedIn URLs here!
+  const developers = [
+    { name: "Mayur ", url: "https://www.linkedin.com/in/syed-mayur-haque-b2063a288?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+    { name: "Himan ", url: "https://www.linkedin.com/in/himan-kashyap-1278492a1" },
+    { name: "Ihsan", url: "https://www.linkedin.com/in/ihsan-zaman-a8a85433b/" },
+  ];
 
   return (
     <footer className={`relative z-10 mt-24 md:mt-40 backdrop-blur-xl pb-24 lg:pb-0 ${isDark ? "bg-black/60" : "bg-white/70"}`}>
@@ -3036,44 +3192,41 @@ const Footer = memo(function Footer({ setView }) {
 
           <div className="lg:col-span-2">
             <p className={colHead}>Listen On</p>
-            {/* Beautiful Custom Buttons for Spotify & YouTube */}
-           <div className="flex flex-col items-start gap-3">
-  {/* Spotify Button */}
-  <a 
-    href="https://open.spotify.com/user/d7q28xhv8u6cw20akhxwh5vz6?si=7ced1bdc4e064fa2" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    className={`group inline-flex items-center gap-2.5 rounded-full border pl-3 pr-4 py-2.5 text-sm font-medium transition-all duration-300 md:duration-500 hover:-translate-y-0.5 active:scale-95 ${
-      isDark 
-        ? "border-white/12 text-white/80 hover:text-white hover:border-[#1DB954]/60 hover:bg-[#1DB954]/10 active:bg-[#1DB954]/20" 
-        : "border-black/12 text-neutral-700 hover:text-neutral-900 hover:border-[#1DB954]/60 hover:bg-[#1DB954]/10 active:bg-[#1DB954]/20"
-    }`}
-  >
-    {/* Colored on mobile, grey on desktop until hover */}
-    <span className="text-[#1DB954] md:text-neutral-500 transition-colors duration-300 group-hover:text-[#1DB954]">
-      <Spotify size={17} />
-    </span> 
-    Spotify
-  </a>
+            <div className="flex flex-col items-start gap-3">
+              {/* Spotify Button */}
+              <a 
+                href="https://open.spotify.com/user/d7q28xhv8u6cw20akhxwh5vz6?si=7ced1bdc4e064fa2" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={`group inline-flex items-center gap-2.5 rounded-full border pl-3 pr-4 py-2.5 text-sm font-medium transition-all duration-300 md:duration-500 hover:-translate-y-0.5 active:scale-95 ${
+                  isDark 
+                    ? "border-white/12 text-white/80 hover:text-white hover:border-[#1DB954]/60 hover:bg-[#1DB954]/10 active:bg-[#1DB954]/20" 
+                    : "border-black/12 text-neutral-700 hover:text-neutral-900 hover:border-[#1DB954]/60 hover:bg-[#1DB954]/10 active:bg-[#1DB954]/20"
+                }`}
+              >
+                <span className="text-[#1DB954] md:text-neutral-500 transition-colors duration-300 group-hover:text-[#1DB954]">
+                  <Spotify size={17} />
+                </span> 
+                Spotify
+              </a>
 
-  {/* YouTube Music Button */}
-  <a 
-    href="https://music.youtube.com/@wildwoodrecords?si=-b6lxhRGayRQVVk5" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    className={`group inline-flex items-center gap-2.5 rounded-full border pl-3 pr-4 py-2.5 text-sm font-medium transition-all duration-300 md:duration-500 hover:-translate-y-0.5 active:scale-95 ${
-      isDark 
-        ? "border-white/12 text-white/80 hover:text-white hover:border-[#FF0000]/60 hover:bg-[#FF0000]/10 active:bg-[#FF0000]/20" 
-        : "border-black/12 text-neutral-700 hover:text-neutral-900 hover:border-[#FF0000]/60 hover:bg-[#FF0000]/10 active:bg-[#FF0000]/20"
-    }`}
-  >
-    {/* Colored on mobile, grey on desktop until hover */}
-    <span className="text-[#FF0000] md:text-neutral-500 transition-colors duration-300 group-hover:text-[#FF0000]">
-      <Youtube size={17} />
-    </span> 
-    YouTube Music
-  </a>
-</div>
+              {/* YouTube Music Button */}
+              <a 
+                href="https://music.youtube.com/@wildwoodrecords?si=-b6lxhRGayRQVVk5" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={`group inline-flex items-center gap-2.5 rounded-full border pl-3 pr-4 py-2.5 text-sm font-medium transition-all duration-300 md:duration-500 hover:-translate-y-0.5 active:scale-95 ${
+                  isDark 
+                    ? "border-white/12 text-white/80 hover:text-white hover:border-[#FF0000]/60 hover:bg-[#FF0000]/10 active:bg-[#FF0000]/20" 
+                    : "border-black/12 text-neutral-700 hover:text-neutral-900 hover:border-[#FF0000]/60 hover:bg-[#FF0000]/10 active:bg-[#FF0000]/20"
+                }`}
+              >
+                <span className="text-[#FF0000] md:text-neutral-500 transition-colors duration-300 group-hover:text-[#FF0000]">
+                  <Youtube size={17} />
+                </span> 
+                YouTube Music
+              </a>
+            </div>
           </div>
 
           <div className="lg:col-span-3">
@@ -3086,36 +3239,47 @@ const Footer = memo(function Footer({ setView }) {
         </div>
 
         <div className={`pt-8 border-t flex flex-col-reverse lg:flex-row items-center justify-between gap-8 md:gap-4 text-xs ${isDark ? "border-white/10 text-neutral-500" : "border-neutral-200 text-neutral-500"}`}>
-  
-  {/* LEFT: Copyright - Flex-1 pushes the center items perfectly to the middle */}
-  <div className="flex-1 w-full lg:w-auto text-center lg:text-left">
-    <span className="font-medium tracking-wide">
-      &copy; {new Date().getFullYear()} Wildwood Records. All rights reserved.
-    </span>
-  </div>
+          
+          {/* LEFT: Copyright */}
+          <div className="flex-1 w-full lg:w-auto text-center lg:text-left">
+            <span className="font-medium tracking-wide">
+              &copy; {new Date().getFullYear()} Wildwood Records. All rights reserved.
+            </span>
+          </div>
 
-  {/* CENTER: Legal Links - Using tiny, highly-tracked uppercase text for an editorial/premium feel */}
-  <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-[10px] font-bold tracking-[0.2em] uppercase">
-    <button onClick={() => go("privacy")} className={`ftr-link transition-colors duration-500 ${isDark ? "hover:text-white" : "hover:text-neutral-900"}`}>
-      Privacy
-    </button>
-    <button onClick={() => go("terms")} className={`ftr-link transition-colors duration-500 ${isDark ? "hover:text-white" : "hover:text-neutral-900"}`}>
-      Terms
-    </button>
-    <button onClick={() => go("admin")} className={`ftr-link transition-colors duration-500 ${isDark ? "hover:text-white" : "hover:text-neutral-900"}`}>
-      Admin
-    </button>
-  </div>
+          {/* CENTER: Legal Links */}
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-[10px] font-bold tracking-[0.2em] uppercase">
+            <button onClick={() => go("privacy")} className={`ftr-link transition-colors duration-500 ${isDark ? "hover:text-white" : "hover:text-neutral-900"}`}>
+              Privacy
+            </button>
+            <button onClick={() => go("terms")} className={`ftr-link transition-colors duration-500 ${isDark ? "hover:text-white" : "hover:text-neutral-900"}`}>
+              Terms
+            </button>
+            <button onClick={() => go("admin")} className={`ftr-link transition-colors duration-500 ${isDark ? "hover:text-white" : "hover:text-neutral-900"}`}>
+              Admin
+            </button>
+          </div>
 
-  {/* RIGHT: Tagline - Flex-1 and justify-end perfectly mirrors the left side */}
-  <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end">
-    <span className={`inline-flex items-center gap-2 tracking-[0.25em] uppercase text-[10px] font-bold ${isDark ? "text-neutral-400" : "text-neutral-400"}`}>
-      Songs from the undergrowth 
-      <Sparkles size={12} className={`transition-colors duration-700 ${isDark ? "text-white/30 hover:text-white" : "text-black/30 hover:text-black"}`} aria-hidden="true" />
-    </span>
-  </div>
+          {/* RIGHT: Tagline */}
+          <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end">
+            <span className={`inline-flex items-center gap-2 tracking-[0.25em] uppercase text-[10px] font-bold ${isDark ? "text-neutral-400" : "text-neutral-400"}`}>
+              Songs from the undergrowth 
+              <Sparkles size={12} className={`transition-colors duration-700 ${isDark ? "text-white/30 hover:text-white" : "text-black/30 hover:text-black"}`} aria-hidden="true" />
+            </span>
+          </div>
+        </div>
 
-</div>
+        {/* ------------------------------------------------------------------ */}
+        {/* PREMIUM DEVELOPER CREDITS PILL                                     */}
+        {/* ------------------------------------------------------------------ */}
+        {/* ------------------------------------------------------------------ */}
+        {/* PREMIUM DEVELOPER CREDITS PILL                                     */}
+        {/* ------------------------------------------------------------------ */}
+        <div className={`mt-14 md:mt-20 pt-10 border-t flex justify-center w-full ${isDark ? "border-white/5" : "border-black/5"}`}>
+          <DevCreditsBadge developers={developers} />
+        </div>
+        {/* ------------------------------------------------------------------ */}
+
       </div>
     </footer>
   );

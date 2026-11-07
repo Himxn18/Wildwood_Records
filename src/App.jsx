@@ -2861,9 +2861,16 @@ const Nav = memo(function Nav({ view, setView }) {
   }, []);
 
   const go = (id) => {
+    setOpen(false);
     setView(id);
     window.scrollTo(0, 0);
   };
+
+  /* Also close the menu whenever the page changes by any route, such as
+     the phone's back button or a link elsewhere on the site. */
+  useEffect(() => {
+    setOpen(false);
+  }, [view]);
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color] duration-300 ${scrolled ? (isDark ? "bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-[0_1px_0_rgba(255,255,255,0.04)]" : "bg-white/85 backdrop-blur-xl border-b border-neutral-200/90 shadow-[0_1px_0_rgba(0,0,0,0.03)]") : "bg-transparent border-b border-transparent"}`}>
@@ -5309,6 +5316,7 @@ const DonateUs = memo(function DonateUs() {
             <PaymentsPaused />
           </div>
         </Reveal>
+
 
         <Reveal>
           <div className="mt-6 md:mt-8">

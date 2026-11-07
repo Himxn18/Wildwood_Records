@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useLayoutEffect, useRef, useCallback, useContext, useMemo, createContext, memo } from "react";
 import myLogo from "./assets/logo.png";
 import {
-  Sun,Moon,Mail,Phone,Check,ChevronDown,AlertCircle,Apple,Cloud,HeartHandshake,CreditCard,ShieldCheck,Tent,Droplets,HeartPulse,Play,Pause,Menu,X,ArrowRight,ArrowLeft,ArrowUpRight,Disc3,Calendar,MapPin,Ticket,Music2,UploadCloud,Send,Headphones,Mic,Radio,Music,ChevronUp,ListMusic,Search,BadgeCheck,Crown,Sparkles,Users,
-  PenTool,SlidersHorizontal,Video,Film,Palette,Image,Globe,Share2,Megaphone,RotateCw,FileText,
-  QrCode,Copy,Download,Lock,LogOut,Trash2,FileDown,Filter,ClipboardCheck,BadgeX,Landmark,Loader2
+  Sun, Moon, Mail, Phone, Check, ChevronDown, AlertCircle, Apple, Cloud, HeartHandshake, CreditCard, ShieldCheck, Tent, Droplets, HeartPulse, Play, Pause, Menu, X, ArrowRight, ArrowLeft, ArrowUpRight, Disc3, Calendar, MapPin, Ticket, Music2, UploadCloud, Send, Headphones, Mic, Radio, Music, ChevronUp, ListMusic, Search, BadgeCheck, Crown, Sparkles, Users,
+  PenTool, SlidersHorizontal, Video, Film, Palette, Image, Globe, Share2, Megaphone, RotateCw, FileText,
+  QrCode, Copy, Download, Lock, LogOut, Trash2, FileDown, Filter, ClipboardCheck, BadgeX, Landmark, Loader2
 } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
@@ -361,23 +361,20 @@ function ThemeToggle({ className = "" }) {
       onClick={toggleTheme}
       aria-label={label}
       title={label}
-      className={`relative w-10 h-10 shrink-0 rounded-full border flex items-center justify-center overflow-hidden transition-all duration-300 ease-in-out will-change-transform hover:scale-105 active:scale-90 ${
-        isDark
-          ? "border-white/15 bg-white/5 text-white shadow-[0_0_12px_rgba(255,255,255,0.10)] hover:border-white/40 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(255,255,255,0.28)]"
-          : "border-neutral-300 bg-white text-neutral-900 shadow-[0_0_12px_rgba(0,0,0,0.08)] hover:border-neutral-500 hover:shadow-[0_0_20px_rgba(245,158,11,0.35)]"
-      } ${className}`}
+      className={`relative w-10 h-10 shrink-0 rounded-full border flex items-center justify-center overflow-hidden transition-all duration-300 ease-in-out will-change-transform hover:scale-105 active:scale-90 ${isDark
+        ? "border-white/15 bg-white/5 text-white shadow-[0_0_12px_rgba(255,255,255,0.10)] hover:border-white/40 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(255,255,255,0.28)]"
+        : "border-neutral-300 bg-white text-neutral-900 shadow-[0_0_12px_rgba(0,0,0,0.08)] hover:border-neutral-500 hover:shadow-[0_0_20px_rgba(245,158,11,0.35)]"
+        } ${className}`}
     >
       <Sun
         size={17}
-        className={`absolute transition-all duration-300 ease-in-out will-change-transform ${
-          isDark ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"
-        }`}
+        className={`absolute transition-all duration-300 ease-in-out will-change-transform ${isDark ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"
+          }`}
       />
       <Moon
         size={17}
-        className={`absolute transition-all duration-300 ease-in-out will-change-transform ${
-          isDark ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"
-        }`}
+        className={`absolute transition-all duration-300 ease-in-out will-change-transform ${isDark ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"
+          }`}
       />
     </button>
   );
@@ -391,7 +388,7 @@ function ThemeToggle({ className = "" }) {
 /* around it, then redeploy. No other file needs to change.           */
 /* ------------------------------------------------------------------ */
 const RELEASES_RAW = [
-   {
+  {
     "id": "r1",
     "title": "Tumar Smriti",
     "artist": "Debangaraj",
@@ -420,7 +417,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/xihoron.mpeg"
   },
 
-   {
+  {
     "id": "r3",
     "title": "Tumi Ahiba Edin Kaxhole",
     "artist": "Rishi Raj Phukan and Ranamit Sarma",
@@ -435,7 +432,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/tumiAhiba.mpeg"
   },
 
-    {
+  {
     "id": "r4",
     "title": "Abhilaxi",
     "artist": "Debabrata Gogoi and Aarxslan",
@@ -449,7 +446,7 @@ const RELEASES_RAW = [
     "credits": "Wildwood Records",
     "audioSrc": "/audio/abhilaxi.mpeg"
   },
- {
+  {
     "id": "r5",
     "title": "Monore Majote",
     "artist": "Sannidhya Bhuyan and Debangaraj",
@@ -478,8 +475,8 @@ const RELEASES_RAW = [
     "credits": "Wildwood Records",
     "audioSrc": "/audio/kinuXure.mpeg"
   },
- 
-    {
+
+  {
     "id": "r7",
     "title": "Mon Fuloni",
     "artist": "Sannidhya Bhuyan",
@@ -493,7 +490,7 @@ const RELEASES_RAW = [
     "credits": "Wildwood Records",
     "audioSrc": "/audio/monFuloni.mpeg"
   },
-    {
+  {
     "id": "r8",
     "title": "Hiyaphool",
     "artist": "Debangaraj",
@@ -508,7 +505,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/hiyaphool.mpeg"
   },
 
-    {
+  {
     "id": "r9",
     "title": "Niraxa",
     "artist": "Debabrata Gogoi and GJay",
@@ -523,7 +520,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/niraxa.mpeg"
   },
 
-     {
+  {
     "id": "r10",
     "title": "Prohelika",
     "artist": "Debabrata Gogoi",
@@ -538,7 +535,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/prohelika.mpeg"
   },
 
-    {
+  {
     "id": "r11",
     "title": "Xopun Xur",
     "artist": "Debashree Sharma,Sannidhya Bhuyan and Phenoxy Music",
@@ -554,7 +551,7 @@ const RELEASES_RAW = [
   },
 
 
-    {
+  {
     "id": "r12",
     "title": "Niyor",
     "artist": "Ranamit Sarma,Ayan Purkayastha",
@@ -569,7 +566,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/niyor.mpeg"
   },
 
-    {
+  {
     "id": "r13",
     "title": "Abhiman",
     "artist": "Debangaraj,Pincool and TYPHOON MUSIC",
@@ -583,7 +580,7 @@ const RELEASES_RAW = [
     "credits": "Wildwood Records",
     "audioSrc": "/audio/Abhiman.mpeg"
   },
-    {
+  {
     "id": "r14",
     "title": "Xunoyona(Remix)",
     "artist": "Sannidhya Bhuyan and Debabrata Gogoi",
@@ -598,7 +595,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/xunoyona.mpeg"
   },
 
-    {
+  {
     "id": "r15",
     "title": "Premor Sila",
     "artist": "KLANZ and EREKA",
@@ -613,7 +610,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/premor.mpeg"
   },
 
-    {
+  {
     "id": "r16",
     "title": "Boroxa Bristi",
     "artist": "Tridip Kakati,Vicky Kalita and Prasant Das",
@@ -628,7 +625,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/boroxa.mpeg"
   },
 
-    {
+  {
     "id": "r17",
     "title": "Boroxa Bristi (Female)",
     "artist": "Stutima Basistha and Tridib Kakati",
@@ -643,7 +640,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/boroxaF.mpeg"
   },
 
-    {
+  {
     "id": "r18",
     "title": "Morisika",
     "artist": "Raud and Ranamit Sarma",
@@ -658,7 +655,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/morisika.mpeg"
   },
 
-   {
+  {
     "id": "r19",
     "title": "Dipto Tora",
     "artist": "Dyou and Jitrz",
@@ -672,7 +669,7 @@ const RELEASES_RAW = [
     "credits": "Wildwood Records",
     "audioSrc": "/audio/dipto.mpeg"
   },
-{
+  {
     "id": "r20",
     "title": "Upaxona",
     "artist": "Saurav Hazarika and Zenith Gogoi",
@@ -685,7 +682,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/upaxona.mpeg"
   },
 
-    {
+  {
     "id": "r21",
     "title": "Xondhyaraag",
     "artist": "Purab Hazarika",
@@ -697,7 +694,7 @@ const RELEASES_RAW = [
     "credits": "Wildwood Records",
     "audioSrc": "/audio/xondhya.mpeg"
   },
-    {
+  {
     "id": "r22",
     "title": "Xopun",
     "artist": "Arin Siam,Nibir X and Nikhil",
@@ -712,7 +709,7 @@ const RELEASES_RAW = [
     "audioSrc": "/audio/xopun.mpeg"
   },
 
-    {
+  {
     "id": "r23",
     "title": "Kompito",
     "artist": "Tridib Kakati,Nikhil and Prasant Das",
@@ -766,7 +763,7 @@ const SPOTLIGHT_ARTIST_NAMES = ["Debangaraj", "Debabrata Gogoi", "Tridib Kakati"
 
 const ARTISTS_RAW = [
 
-{
+  {
     "name": "Vicky Kalita",
     "role": "Featured Vocalist",
     "genre": "Assamese Pop",
@@ -786,7 +783,7 @@ const ARTISTS_RAW = [
     ]
   },
 
-   {
+  {
     "name": "KLANZ",
     "role": "Artist",
     "genre": "Assamese Pop",
@@ -827,7 +824,7 @@ const ARTISTS_RAW = [
       "Xuworoni"
     ]
   },
-  
+
   {
     "name": "Bhargov Deka",
     "role": "Vocalist",
@@ -1282,7 +1279,7 @@ const ARTISTS_RAW = [
       "Niyor"
     ]
   },
-  
+
   {
     "name": "GJay",
     "role": "Featured Artist",
@@ -1644,7 +1641,7 @@ const NAV_ITEMS = [
   { id: "about", label: "About" },
   { id: "events", label: "Events" },
   { id: "services", label: "Services" },
-  { id: "donateus", label: "Donate Us", accent: true },
+  { id: "donateus", label: "Help the Label" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -1763,23 +1760,33 @@ function GlobalPolishStyles() {
         --ww-scrollbar-thumb-hover: rgba(255, 255, 255, 0.28);
         color-scheme: dark;
       }
-      html {
+           html {
         -webkit-text-size-adjust: 100%;
         text-size-adjust: 100%;
         background-color: var(--ww-page-bg);
-        height: 100%;
+        scroll-behavior: auto;
       }
       body {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
-        overscroll-behavior-y: none;
         background-color: var(--ww-page-bg);
-        min-height: 100%;
+        min-height: 100vh;
       }
       #root {
         background-color: var(--ww-page-bg);
-        min-height: 100dvh;
+        min-height: 100vh;
+      }
+      .ww-shell {
+        position: relative;
+        width: 100%;
+        overflow-x: clip;
+      }
+      .ww-fixed-bg {
+        transform: translateZ(0);
+      }
+      @supports not (overflow: clip) {
+        .ww-shell { overflow-x: hidden; }
       }
       /* THEME: smooth global cross-fade between themes (global
          transition-all / duration-300 / ease-in-out utilities). Scoped to
@@ -1891,9 +1898,6 @@ function GlobalPolishStyles() {
         /* One shared, premium ease-out curve used across hover/press states
            so every interaction in the site decelerates the same way. */
         --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      html {
-        scroll-behavior: smooth;
       }
       body {
         font-family: var(--font-body) !important;
@@ -2406,26 +2410,26 @@ function GoogleFontsLoader() {
    and cause a hydration mismatch, plus they'd reshuffle on every remount.
    Positions are hand-spaced to avoid clustering behind the hero copy. */
 const FLOATING_ICONS = [
-  { Icon: Disc3,      top: "22%", left: "14%",  size: 64, op: 0.06, dur: "16s", delay: "0s" },
-  { Icon: Headphones, top: "62%", left: "18%",  size: 46, op: 0.06, dur: "14s", delay: "1.2s" },
-  { Icon: Radio,      top: "78%", left: "76%",  size: 50, op: 0.05, dur: "17s", delay: "2.4s" },
-  { Icon: Music2,     top: "6%",  left: "62%",  size: 80, op: 0.03, dur: "19s", delay: "0.6s" },
-  { Icon: Disc3,      top: "86%", left: "42%",  size: 30, op: 0.05, dur: "12s", delay: "3.1s" },
-  { Icon: Mic,        top: "38%", left: "52%",  size: 34, op: 0.05, dur: "13s", delay: "1.8s" },
-  { Icon: Music,      top: "14%", left: "9%",   size: 38, op: 0.05, dur: "12s", delay: "2.9s" },
-  { Icon: ListMusic,  top: "30%", left: "84%",  size: 42, op: 0.05, dur: "15s", delay: "0.3s" },
-  { Icon: Mic,        top: "8%",  left: "34%",  size: 26, op: 0.04, dur: "18s", delay: "4.2s" },
-  { Icon: Headphones, top: "48%", left: "5%",   size: 56, op: 0.04, dur: "20s", delay: "2.1s" },
-  { Icon: Music2,     top: "70%", left: "58%",  size: 28, op: 0.05, dur: "11s", delay: "3.7s" },
-  { Icon: Disc3,      top: "54%", left: "34%",  size: 44, op: 0.035, dur: "21s", delay: "1.1s" },
-  { Icon: Radio,      top: "17%", left: "47%",  size: 32, op: 0.04, dur: "16s", delay: "5.0s" },
-  { Icon: Music,      top: "92%", left: "12%",  size: 36, op: 0.05, dur: "13s", delay: "0.9s" },
-  { Icon: ListMusic,  top: "82%", left: "90%",  size: 30, op: 0.04, dur: "14s", delay: "2.6s" },
-  { Icon: Music2,     top: "44%", left: "68%",  size: 52, op: 0.035, dur: "22s", delay: "3.4s" },
-  { Icon: Mic,        top: "66%", left: "92%",  size: 38, op: 0.045, dur: "15s", delay: "1.5s" },
-  { Icon: Disc3,      top: "2%",  left: "80%",  size: 34, op: 0.04, dur: "17s", delay: "4.6s" },
-  { Icon: Headphones, top: "34%", left: "26%",  size: 24, op: 0.045, dur: "12s", delay: "2.2s" },
-  { Icon: Music,      top: "58%", left: "44%",  size: 60, op: 0.03, dur: "23s", delay: "0.4s" },
+  { Icon: Disc3, top: "22%", left: "14%", size: 64, op: 0.06, dur: "16s", delay: "0s" },
+  { Icon: Headphones, top: "62%", left: "18%", size: 46, op: 0.06, dur: "14s", delay: "1.2s" },
+  { Icon: Radio, top: "78%", left: "76%", size: 50, op: 0.05, dur: "17s", delay: "2.4s" },
+  { Icon: Music2, top: "6%", left: "62%", size: 80, op: 0.03, dur: "19s", delay: "0.6s" },
+  { Icon: Disc3, top: "86%", left: "42%", size: 30, op: 0.05, dur: "12s", delay: "3.1s" },
+  { Icon: Mic, top: "38%", left: "52%", size: 34, op: 0.05, dur: "13s", delay: "1.8s" },
+  { Icon: Music, top: "14%", left: "9%", size: 38, op: 0.05, dur: "12s", delay: "2.9s" },
+  { Icon: ListMusic, top: "30%", left: "84%", size: 42, op: 0.05, dur: "15s", delay: "0.3s" },
+  { Icon: Mic, top: "8%", left: "34%", size: 26, op: 0.04, dur: "18s", delay: "4.2s" },
+  { Icon: Headphones, top: "48%", left: "5%", size: 56, op: 0.04, dur: "20s", delay: "2.1s" },
+  { Icon: Music2, top: "70%", left: "58%", size: 28, op: 0.05, dur: "11s", delay: "3.7s" },
+  { Icon: Disc3, top: "54%", left: "34%", size: 44, op: 0.035, dur: "21s", delay: "1.1s" },
+  { Icon: Radio, top: "17%", left: "47%", size: 32, op: 0.04, dur: "16s", delay: "5.0s" },
+  { Icon: Music, top: "92%", left: "12%", size: 36, op: 0.05, dur: "13s", delay: "0.9s" },
+  { Icon: ListMusic, top: "82%", left: "90%", size: 30, op: 0.04, dur: "14s", delay: "2.6s" },
+  { Icon: Music2, top: "44%", left: "68%", size: 52, op: 0.035, dur: "22s", delay: "3.4s" },
+  { Icon: Mic, top: "66%", left: "92%", size: 38, op: 0.045, dur: "15s", delay: "1.5s" },
+  { Icon: Disc3, top: "2%", left: "80%", size: 34, op: 0.04, dur: "17s", delay: "4.6s" },
+  { Icon: Headphones, top: "34%", left: "26%", size: 24, op: 0.045, dur: "12s", delay: "2.2s" },
+  { Icon: Music, top: "58%", left: "44%", size: 60, op: 0.03, dur: "23s", delay: "0.4s" },
 ];
 
 /* `isPlaying` drives THE WOW TOUCH: the three ambient gradient blobs
@@ -2436,7 +2440,7 @@ const FloatingBackground = memo(function FloatingBackground({ isPlaying = false 
   const iconTone = isDark ? "text-neutral-300" : "text-neutral-500";
   const breathe = isPlaying ? "blob-breathe" : "";
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="ww-fixed-bg fixed inset-0 pointer-events-none overflow-hidden z-0">
       <FloatKeyframes />
       <div
         className={`absolute -top-40 left-[8%] w-[560px] h-[560px] rounded-full blur-[10px] ${breathe} ${isDark ? "bg-[radial-gradient(circle,rgba(200,200,205,0.10),transparent_70%)]" : "bg-[radial-gradient(circle,rgba(60,60,70,0.07),transparent_70%)]"}`}
@@ -2481,7 +2485,7 @@ const AMBIENT_NOTES = [
 const AmbientNotes = memo(function AmbientNotes() {
   const { isDark } = useTheme();
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+    <div className="ww-fixed-bg fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
       {AMBIENT_NOTES.map((n, i) => (
         <span
           key={i}
@@ -2509,14 +2513,13 @@ const EQBars = memo(function EQBars({ count = 5, className = "", tall = false, o
   const { isDark } = useTheme();
   const light = !isDark && !onMedia;
   const peaks = [0.4, 0.8, 0.55, 0.95, 0.65, 0.35, 0.75];
-   return (
+  return (
     <div className={`flex items-end gap-[3px] ${tall ? "h-6" : "h-3.5"} ${className}`} aria-hidden="true">
       {Array.from({ length: count }).map((_, i) => (
         <span
           key={i}
-          className={`w-[3px] rounded-full eq-bar will-change-transform ${isPlaying ? "" : "is-idle"} ${
-            color ? "" : light ? "bg-neutral-900 shadow-[0_0_6px_1px_rgba(0,0,0,0.28)]" : "bg-white shadow-[0_0_6px_1px_rgba(255,255,255,0.55)]"
-          }`}
+          className={`w-[3px] rounded-full eq-bar will-change-transform ${isPlaying ? "" : "is-idle"} ${color ? "" : light ? "bg-neutral-900 shadow-[0_0_6px_1px_rgba(0,0,0,0.28)]" : "bg-white shadow-[0_0_6px_1px_rgba(255,255,255,0.55)]"
+            }`}
           style={{
             animationDelay: `${i * 0.14}s`,
             transitionDelay: `${i * 0.05}s`,
@@ -2569,35 +2572,11 @@ const getAccent = (title) => SERVICE_ACCENTS[title] || "#10b981";
 const PAGE_EASE = [0.22, 1, 0.36, 1];
 
 const pageVariants = {
-  initial: { 
-    opacity: 0, 
-    filter: "blur(16px)", 
-    scale: 0.95, 
-    y: 12 
-  },
-  animate: {
-    opacity: 1, 
-    filter: "blur(0px)", 
-    scale: 1, 
-    y: 0,
-    transition: { 
-      duration: 0.85, 
-      ease: PAGE_EASE, 
-      opacity: { duration: 0.5, ease: "linear" },
-      filter: { duration: 0.85, ease: "easeOut" }
-    },
-  },
-  exit: {
-    opacity: 0, 
-    filter: "blur(12px)", 
-    scale: 1.03, 
-    y: -12,
-    transition: { duration: 0.4, ease: [0.4, 0, 1, 1] },
-  },
+  initial: { opacity: 0, y: 12 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: PAGE_EASE } },
+  exit: { opacity: 0, transition: { duration: 0.25 } },
 };
 
-/* Respect prefers-reduced-motion: keep the fade (it aids orientation),
-   drop the movement and the blur. */
 const pageVariantsReduced = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.25 } },
@@ -2612,8 +2591,6 @@ const PageWrapper = memo(function PageWrapper({ children, className = "" }) {
       initial="initial"
       animate="animate"
       exit="exit"
-      /* Promote to its own layer for the duration of the transition */
-      style={{ willChange: "transform, opacity, filter" }}
       className={`relative z-10 pb-16 md:pb-0 ${className}`}
     >
       {children}
@@ -2638,22 +2615,23 @@ function usePrefersReducedMotion() {
 }
 
 /* ------------------------------- SCROLL REVEAL ------------------------------- */
+/* useInView now mutates the DOM directly instead of calling setState.
+   Zero React re-renders when elements scroll into view = no scroll jitter.     */
 
 function useInView(threshold = 0.15) {
   const ref = useRef(null);
-  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
     if (typeof IntersectionObserver === "undefined") {
-      setInView(true);
+      node.classList.add("reveal-in");
       return;
     }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setInView(true);
+          node.classList.add("reveal-in");
           observer.unobserve(node);
         }
       },
@@ -2663,16 +2641,16 @@ function useInView(threshold = 0.15) {
     return () => observer.disconnect();
   }, [threshold]);
 
-  return [ref, inView];
+  return ref;
 }
 
 const Reveal = memo(function Reveal({ children, className = "", delay = 0, as: Tag = "div" }) {
-  const [ref, inView] = useInView();
+  const ref = useInView();
   return (
     <Tag
       ref={ref}
-      className={`reveal ${inView ? "reveal-in" : ""} ${className}`}
-      style={{ transitionDelay: inView ? `${delay}ms` : "0ms" }}
+      className={`reveal ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
     </Tag>
@@ -2691,9 +2669,8 @@ function Preloader({ visible }) {
       aria-live="polite"
       aria-label="Loading Wildwood Records"
       aria-hidden={!visible}
-      className={`fixed inset-0 z-[200] flex flex-col items-center justify-center ${isDark ? "bg-[#050505]" : "bg-[#fafafa]"} transition-opacity duration-700 ease-out ${
-        visible ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
+      className={`fixed inset-0 z-[200] flex flex-col items-center justify-center ${isDark ? "bg-[#050505]" : "bg-[#fafafa]"} transition-opacity duration-700 ease-out ${visible ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
     >
       <div className="relative mb-8 md:mb-10">
         <div className={`absolute inset-0 rounded-full blur-2xl scale-[2.2] animate-pulse ${isDark ? "bg-white/10" : "bg-neutral-900/10"}`} />
@@ -2850,7 +2827,7 @@ function ClickBurstProvider({ children }) {
   }, []);
 
   return (
-    <div onClick={triggerBurst} className="relative w-full min-h-screen">
+    <div onClick={triggerBurst} className="ww-shell min-h-screen">
       <style>{`
         @keyframes clickRingPulse { 0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0.9; } 100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; } }
         @keyframes clickDotPulse { 0% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(0.4); opacity: 0; } }
@@ -2885,14 +2862,13 @@ const Nav = memo(function Nav({ view, setView }) {
 
   const go = (id) => {
     setView(id);
-    setOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo(0, 0);
   };
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color] duration-300 ${scrolled ? (isDark ? "bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-[0_1px_0_rgba(255,255,255,0.04)]" : "bg-white/85 backdrop-blur-xl border-b border-neutral-200/90 shadow-[0_1px_0_rgba(0,0,0,0.03)]") : "bg-transparent border-b border-transparent"}`}>
       <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-10 flex items-center justify-between h-20">
-        
+
         {/* Logo & Conditional Mobile Back Button */}
         <div className="flex items-center gap-3 min-w-0">
           {view !== "home" && (
@@ -2948,28 +2924,28 @@ const Nav = memo(function Nav({ view, setView }) {
         <div className="lg:hidden flex items-center gap-2 shrink-0">
           <ThemeToggle />
           <button
-  onClick={() => setOpen(!open)}
-  className={`relative w-9 h-9 -mr-1 flex items-center justify-center ${isDark ? "text-white" : "text-neutral-900"}`}
-  aria-label={open ? "Close menu" : "Open menu"}
-  aria-expanded={open}
->
-  <span aria-hidden="true" className="relative w-6 h-5 block">
-    <span className={`absolute left-0 w-6 h-[2px] rounded-full bg-current transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0 rotate-0"}`} />
-    <span className={`absolute left-0 top-1/2 -translate-y-1/2 w-6 h-[2px] rounded-full bg-current transition-all duration-200 ease-out ${open ? "opacity-0 scale-x-0" : "opacity-100 scale-x-100"}`} />
-    <span className={`absolute left-0 w-6 h-[2px] rounded-full bg-current transition-all duration-350 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "bottom-1/2 translate-y-1/2 -rotate-45" : "bottom-0 rotate-0"}`} />
-  </span>
-</button>
+            onClick={() => setOpen(!open)}
+            className={`relative w-9 h-9 -mr-1 flex items-center justify-center ${isDark ? "text-white" : "text-neutral-900"}`}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            <span aria-hidden="true" className="relative w-6 h-5 block">
+              <span className={`absolute left-0 w-6 h-[2px] rounded-full bg-current transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0 rotate-0"}`} />
+              <span className={`absolute left-0 top-1/2 -translate-y-1/2 w-6 h-[2px] rounded-full bg-current transition-all duration-200 ease-out ${open ? "opacity-0 scale-x-0" : "opacity-100 scale-x-100"}`} />
+              <span className={`absolute left-0 w-6 h-[2px] rounded-full bg-current transition-all duration-350 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "bottom-1/2 translate-y-1/2 -rotate-45" : "bottom-0 rotate-0"}`} />
+            </span>
+          </button>
         </div>
       </div>
 
       <div aria-hidden={!open} className={`lg:hidden absolute top-full left-0 right-0 origin-top backdrop-blur-2xl border-b will-change-transform ${isDark ? "bg-black/95 border-white/10" : "bg-white/95 border-neutral-200"} transition-[opacity,transform,visibility] duration-300 ease-out ${open ? "opacity-100 visible translate-y-0 scale-y-100 pointer-events-auto" : "opacity-0 invisible -translate-y-2 scale-y-95 pointer-events-none"}`}>
         <div className="flex flex-col px-6 py-4 gap-1">
-         {NAV_ITEMS.map((item, i) => (
-  <button
-    key={item.id}
-    onClick={() => go(item.id)}
-    style={{ transitionDelay: open ? `${60 + i * 35}ms` : "0ms" }}
-    className={`text-left py-4 text-sm tracking-wide uppercase border-b last:border-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3"} ${isDark ? "border-neutral-900/50" : "border-neutral-200/80"} ${view === item.id ? (isDark ? "text-white font-bold" : "text-neutral-900 font-bold") : isDark ? "text-neutral-400" : "text-neutral-500"}`}>
+          {NAV_ITEMS.map((item, i) => (
+            <button
+              key={item.id}
+              onClick={() => go(item.id)}
+              style={{ transitionDelay: open ? `${60 + i * 35}ms` : "0ms" }}
+              className={`text-left py-4 text-sm tracking-wide uppercase border-b last:border-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3"} ${isDark ? "border-neutral-900/50" : "border-neutral-200/80"} ${view === item.id ? (isDark ? "text-white font-bold" : "text-neutral-900 font-bold") : isDark ? "text-neutral-400" : "text-neutral-500"}`}>
               {item.label}
               {item.accent && (
                 <span className="relative ml-2.5 inline-flex h-1.5 w-1.5 align-middle" aria-hidden="true">
@@ -3056,11 +3032,10 @@ const DevCreditsBadge = memo(function DevCreditsBadge({ developers }) {
       />
 
       <div
-        className={`relative flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-3 px-8 py-4 rounded-full border backdrop-blur-xl transition-all duration-700 ${
-          isDark
-            ? "bg-black/60 border-white/10 shadow-[0_0_50px_-15px_rgba(255,255,255,0.12)]"
-            : "bg-white/70 border-black/10 shadow-[0_0_50px_-15px_rgba(0,0,0,0.1)]"
-        }`}
+        className={`relative flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-3 px-8 py-4 rounded-full border backdrop-blur-xl transition-all duration-700 ${isDark
+          ? "bg-black/60 border-white/10 shadow-[0_0_50px_-15px_rgba(255,255,255,0.12)]"
+          : "bg-white/70 border-black/10 shadow-[0_0_50px_-15px_rgba(0,0,0,0.1)]"
+          }`}
       >
         <span className="text-[10px] tracking-[0.25em] font-bold uppercase text-neutral-500 flex items-center gap-2">
           <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
@@ -3141,7 +3116,7 @@ const Footer = memo(function Footer({ setView }) {
   const { isDark } = useTheme();
   const go = (id) => {
     setView(id);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo(0, 0);
   };
   const colHead = "text-xs tracking-[0.25em] uppercase text-neutral-500 mb-6 font-semibold";
 
@@ -3194,36 +3169,34 @@ const Footer = memo(function Footer({ setView }) {
             <p className={colHead}>Listen On</p>
             <div className="flex flex-col items-start gap-3">
               {/* Spotify Button */}
-              <a 
-                href="https://open.spotify.com/user/d7q28xhv8u6cw20akhxwh5vz6?si=7ced1bdc4e064fa2" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className={`group inline-flex items-center gap-2.5 rounded-full border pl-3 pr-4 py-2.5 text-sm font-medium transition-all duration-300 md:duration-500 hover:-translate-y-0.5 active:scale-95 ${
-                  isDark 
-                    ? "border-white/12 text-white/80 hover:text-white hover:border-[#1DB954]/60 hover:bg-[#1DB954]/10 active:bg-[#1DB954]/20" 
-                    : "border-black/12 text-neutral-700 hover:text-neutral-900 hover:border-[#1DB954]/60 hover:bg-[#1DB954]/10 active:bg-[#1DB954]/20"
-                }`}
+              <a
+                href="https://open.spotify.com/user/d7q28xhv8u6cw20akhxwh5vz6?si=7ced1bdc4e064fa2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group inline-flex items-center gap-2.5 rounded-full border pl-3 pr-4 py-2.5 text-sm font-medium transition-all duration-300 md:duration-500 hover:-translate-y-0.5 active:scale-95 ${isDark
+                  ? "border-white/12 text-white/80 hover:text-white hover:border-[#1DB954]/60 hover:bg-[#1DB954]/10 active:bg-[#1DB954]/20"
+                  : "border-black/12 text-neutral-700 hover:text-neutral-900 hover:border-[#1DB954]/60 hover:bg-[#1DB954]/10 active:bg-[#1DB954]/20"
+                  }`}
               >
                 <span className="text-[#1DB954] md:text-neutral-500 transition-colors duration-300 group-hover:text-[#1DB954]">
                   <Spotify size={17} />
-                </span> 
+                </span>
                 Spotify
               </a>
 
               {/* YouTube Music Button */}
-              <a 
-                href="https://music.youtube.com/@wildwoodrecords?si=-b6lxhRGayRQVVk5" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className={`group inline-flex items-center gap-2.5 rounded-full border pl-3 pr-4 py-2.5 text-sm font-medium transition-all duration-300 md:duration-500 hover:-translate-y-0.5 active:scale-95 ${
-                  isDark 
-                    ? "border-white/12 text-white/80 hover:text-white hover:border-[#FF0000]/60 hover:bg-[#FF0000]/10 active:bg-[#FF0000]/20" 
-                    : "border-black/12 text-neutral-700 hover:text-neutral-900 hover:border-[#FF0000]/60 hover:bg-[#FF0000]/10 active:bg-[#FF0000]/20"
-                }`}
+              <a
+                href="https://music.youtube.com/@wildwoodrecords?si=-b6lxhRGayRQVVk5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group inline-flex items-center gap-2.5 rounded-full border pl-3 pr-4 py-2.5 text-sm font-medium transition-all duration-300 md:duration-500 hover:-translate-y-0.5 active:scale-95 ${isDark
+                  ? "border-white/12 text-white/80 hover:text-white hover:border-[#FF0000]/60 hover:bg-[#FF0000]/10 active:bg-[#FF0000]/20"
+                  : "border-black/12 text-neutral-700 hover:text-neutral-900 hover:border-[#FF0000]/60 hover:bg-[#FF0000]/10 active:bg-[#FF0000]/20"
+                  }`}
               >
                 <span className="text-[#FF0000] md:text-neutral-500 transition-colors duration-300 group-hover:text-[#FF0000]">
                   <Youtube size={17} />
-                </span> 
+                </span>
                 YouTube Music
               </a>
             </div>
@@ -3239,7 +3212,7 @@ const Footer = memo(function Footer({ setView }) {
         </div>
 
         <div className={`pt-8 border-t flex flex-col-reverse lg:flex-row items-center justify-between gap-8 md:gap-4 text-xs ${isDark ? "border-white/10 text-neutral-500" : "border-neutral-200 text-neutral-500"}`}>
-          
+
           {/* LEFT: Copyright */}
           <div className="flex-1 w-full lg:w-auto text-center lg:text-left">
             <span className="font-medium tracking-wide">
@@ -3263,7 +3236,7 @@ const Footer = memo(function Footer({ setView }) {
           {/* RIGHT: Tagline */}
           <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end">
             <span className={`inline-flex items-center gap-2 tracking-[0.25em] uppercase text-[10px] font-bold ${isDark ? "text-neutral-400" : "text-neutral-400"}`}>
-              Songs from the undergrowth 
+              Songs from the undergrowth
               <Sparkles size={12} className={`transition-colors duration-700 ${isDark ? "text-white/30 hover:text-white" : "text-black/30 hover:text-black"}`} aria-hidden="true" />
             </span>
           </div>
@@ -3318,7 +3291,7 @@ const Home = memo(function Home({ setView, openRelease, playing, isPlaying, togg
                   scale — it flows smoothly from mobile to ultrawide instead
                   of jumping between fixed Tailwind text-* breakpoints. */}
               <h1 className={`font-display text-hero mb-7 ${isDark ? "text-white" : "text-neutral-900"}`}>
-                Music built<br className="hidden sm:block"/> for the <span className={`italic ${isDark ? "text-neutral-400" : "text-neutral-500"}`}>wild.</span>
+                Music built<br className="hidden sm:block" /> for the <span className={`italic ${isDark ? "text-neutral-400" : "text-neutral-500"}`}>wild.</span>
               </h1>
               <p className={`text-sm md:text-base lg:text-lg max-w-xl leading-relaxed ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
                 Wildwood Records is an independent label for immersive, authentic music &mdash; a deliberate roster of artists crafting records that demand to be heard.
@@ -3370,7 +3343,7 @@ const Home = memo(function Home({ setView, openRelease, playing, isPlaying, togg
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 will-change-transform [transform:translateZ(0)]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {highlights.map((r, i) => (
               <Reveal key={r.id} delay={i * 80}>
                 <button onClick={() => openRelease(r)} className="group press-feedback text-left block w-full">
@@ -3431,7 +3404,7 @@ const Releases = memo(function Releases({ openRelease, playing, isPlaying, toggl
           Every record we've put out, in one place. Tap a cover to see credits and stream it in full.
         </p>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-8 will-change-transform [transform:translateZ(0)]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-8">
           {RELEASES.map((r, i) => (
             <Reveal key={r.id} delay={(i % 10) * 45} className="group flex flex-col h-full">
               <button onClick={() => openRelease(r)} className="press-feedback block w-full text-left flex-1">
@@ -3544,15 +3517,14 @@ function SocialIconButton({ href, icon: Icon, confirmed, title }) {
       rel="noreferrer noopener"
       title={title}
       aria-label={title}
-      className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
-        confirmed
-          ? isDark
-            ? "border border-white/15 text-neutral-300 hover:text-black hover:bg-white group-hover:border-white/30"
-            : "border border-black/15 text-neutral-500 hover:text-white hover:bg-neutral-900 group-hover:border-black/30"
-          : isDark
-            ? "border border-dashed border-white/10 text-neutral-600 hover:text-neutral-300 hover:border-white/25"
-            : "border border-dashed border-black/10 text-neutral-400 hover:text-neutral-600 hover:border-black/25"
-      }`}
+      className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${confirmed
+        ? isDark
+          ? "border border-white/15 text-neutral-300 hover:text-black hover:bg-white group-hover:border-white/30"
+          : "border border-black/15 text-neutral-500 hover:text-white hover:bg-neutral-900 group-hover:border-black/30"
+        : isDark
+          ? "border border-dashed border-white/10 text-neutral-600 hover:text-neutral-300 hover:border-white/25"
+          : "border border-dashed border-black/10 text-neutral-400 hover:text-neutral-600 hover:border-black/25"
+        }`}
     >
       <Icon size={14} />
     </a>
@@ -3568,12 +3540,12 @@ const Artists = memo(function Artists() {
 
   // The Spotlight row only appears on the unfiltered, unsearched view — it's a
   // curated highlight, not another filter state to keep in sync.
-const showSpotlight = filter === "All" && !query.trim();
+  const showSpotlight = filter === "All" && !query.trim();
   const spotlightArtists = showSpotlight
     ? SPOTLIGHT_ARTIST_NAMES
-        .map((name) => ARTISTS.find((a) => a.name === name))
-        .filter(Boolean)
-        .sort((a, b) => b.popularityScore - a.popularityScore)
+      .map((name) => ARTISTS.find((a) => a.name === name))
+      .filter(Boolean)
+      .sort((a, b) => b.popularityScore - a.popularityScore)
     : [];
   const spotlightIds = new Set(spotlightArtists.map((a) => a.id));
 
@@ -3644,15 +3616,14 @@ const showSpotlight = filter === "All" && !query.trim();
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`press-feedback text-xs md:text-sm font-bold tracking-[0.15em] uppercase px-4 py-2 rounded-full border transition-all duration-300 ${
-                  filter === f
-                    ? isDark
-                      ? "bg-white text-black border-white"
-                      : "bg-neutral-900 text-white border-neutral-900"
-                    : isDark
-                      ? "border-neutral-700 text-neutral-400 hover:text-white hover:border-white"
-                      : "border-neutral-300 text-neutral-500 hover:text-neutral-900 hover:border-neutral-900"
-                }`}
+                className={`press-feedback text-xs md:text-sm font-bold tracking-[0.15em] uppercase px-4 py-2 rounded-full border transition-all duration-300 ${filter === f
+                  ? isDark
+                    ? "bg-white text-black border-white"
+                    : "bg-neutral-900 text-white border-neutral-900"
+                  : isDark
+                    ? "border-neutral-700 text-neutral-400 hover:text-white hover:border-white"
+                    : "border-neutral-300 text-neutral-500 hover:text-neutral-900 hover:border-neutral-900"
+                  }`}
               >
                 {f}
               </button>
@@ -3714,7 +3685,7 @@ const showSpotlight = filter === "All" && !query.trim();
             <p className="text-neutral-500 text-sm">No artists match &ldquo;{query}&rdquo;. Try a different name, genre, or track.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 will-change-transform [transform:translateZ(0)]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7">
             {filtered.map((artist, i) => {
               const tier = getArtistTier(artist.releases.length);
               const visibleReleases = artist.releases.slice(0, 3);
@@ -3762,47 +3733,47 @@ const showSpotlight = filter === "All" && !query.trim();
                     {/* Card body — padding moved here now that the photo runs
                         edge to edge above it. */}
                     <div className="relative z-10 flex flex-col flex-1 p-5 md:p-6">
-                    <p className={`text-sm md:text-base leading-relaxed mb-4 line-clamp-3 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
-                      {artist.bio}
-                    </p>
+                      <p className={`text-sm md:text-base leading-relaxed mb-4 line-clamp-3 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
+                        {artist.bio}
+                      </p>
 
-                    <div className="mt-auto">
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {visibleReleases.map((r) => (
-                          <span key={r} className={`text-xs font-medium rounded-full px-2.5 py-1 border ${isDark ? "text-neutral-300 bg-white/5 border-white/10" : "text-neutral-600 bg-black/5 border-black/10"}`}>
-                            {r}
-                          </span>
-                        ))}
-                        {extraCount > 0 && (
-                          <span className={`text-xs font-medium rounded-full px-2.5 py-1 border ${isDark ? "text-neutral-500 bg-white/5 border-white/10" : "text-neutral-500 bg-black/5 border-black/10"}`}>
-                            +{extraCount} more
-                          </span>
+                      <div className="mt-auto">
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {visibleReleases.map((r) => (
+                            <span key={r} className={`text-xs font-medium rounded-full px-2.5 py-1 border ${isDark ? "text-neutral-300 bg-white/5 border-white/10" : "text-neutral-600 bg-black/5 border-black/10"}`}>
+                              {r}
+                            </span>
+                          ))}
+                          {extraCount > 0 && (
+                            <span className={`text-xs font-medium rounded-full px-2.5 py-1 border ${isDark ? "text-neutral-500 bg-white/5 border-white/10" : "text-neutral-500 bg-black/5 border-black/10"}`}>
+                              +{extraCount} more
+                            </span>
+                          )}
+                        </div>
+
+                        <div className={`flex items-center justify-between pt-4 border-t ${isDark ? "border-white/10" : "border-black/10"}`}>
+                          <div className="flex items-center gap-2">
+                            <SocialIconButton
+                              href={artist.spotify.url}
+                              icon={Spotify}
+                              confirmed={artist.spotify.confirmed}
+                              title={artist.spotify.confirmed ? `Spotify · ${artist.spotify.listeners}` : `Search "${artist.name}" on Spotify`}
+                            />
+                            <SocialIconButton
+                              href={artist.instagram ? artist.instagram.url : `https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(artist.name)}`}
+                              icon={Instagram}
+                              confirmed={Boolean(artist.instagram)}
+                              title={artist.instagram ? `Instagram ${artist.instagram.handle}` : `No public Instagram confirmed for ${artist.name}`}
+                            />
+                          </div>
+                          <span className={`text-sm font-bold tracking-widest uppercase ${isDark ? "text-neutral-600" : "text-neutral-400"}`}>{artist.category}</span>
+                        </div>
+                        {artist.instagram && (
+                          <p className="mt-2.5 text-xs text-neutral-500">
+                            {artist.instagram.handle} &middot; {artist.instagram.followers} followers
+                          </p>
                         )}
                       </div>
-
-                      <div className={`flex items-center justify-between pt-4 border-t ${isDark ? "border-white/10" : "border-black/10"}`}>
-                        <div className="flex items-center gap-2">
-                          <SocialIconButton
-                            href={artist.spotify.url}
-                            icon={Spotify}
-                            confirmed={artist.spotify.confirmed}
-                            title={artist.spotify.confirmed ? `Spotify · ${artist.spotify.listeners}` : `Search "${artist.name}" on Spotify`}
-                          />
-                          <SocialIconButton
-                            href={artist.instagram ? artist.instagram.url : `https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(artist.name)}`}
-                            icon={Instagram}
-                            confirmed={Boolean(artist.instagram)}
-                            title={artist.instagram ? `Instagram ${artist.instagram.handle}` : `No public Instagram confirmed for ${artist.name}`}
-                          />
-                        </div>
-                        <span className={`text-sm font-bold tracking-widest uppercase ${isDark ? "text-neutral-600" : "text-neutral-400"}`}>{artist.category}</span>
-                      </div>
-                      {artist.instagram && (
-                        <p className="mt-2.5 text-xs text-neutral-500">
-                          {artist.instagram.handle} &middot; {artist.instagram.followers} followers
-                        </p>
-                      )}
-                    </div>
                     </div>
                   </div>
                 </Reveal>
@@ -4590,92 +4561,770 @@ const RecentDonationsWidget = memo(function RecentDonationsWidget() {
   );
 });
 
-/* ----------------------------- Donate Us Page ----------------------------- */
-const DonateUs = memo(function DonateUs() {
-  const { isDark } = useTheme();
-  const [settings, setSettings] = useState(null);
-  const [loadingSettings, setLoadingSettings] = useState(true);
+/* ============================================================== */
+/* HELP THE LABEL — Premium Donation Page                         */
+/* ============================================================== */
+/* Design: premium, independent-label confidence.                 */
+/* Violet/indigo accent (creative, premium, artistic).            */
+/*   1. Hero with floating animated icon orb                      */
+/*   2. Glassmorphic CTA card — explains the "why"                */
+/*   3. Feature grid — what support enables                       */
+/*   4. Amber charity-events notice with rocking-bell animation   */
+/* ============================================================== */
 
-  useEffect(() => {
-    (async () => {
-      setLoadingSettings(true);
-      try {
-        setSettings(await getSettings());
-      } catch {
-        toast.error("Couldn't load campaign details. Please refresh.");
-      } finally {
-        setLoadingSettings(false);
+/* Keyframe styles scoped to the donate page so they never clash
+   with the site's existing animation classes.                   */
+/* ==================================================================== */
+/* HELP THE LABEL — "Standby Console"                                    */
+/*                                                                      */
+/* Concept: the page is a transmitter on standby. A row of bars lies    */
+/* flat with one small blip travelling along it ("nothing scheduled").  */
+/* The moment a visitor signs up for charity alerts, the bars wake up   */
+/* and the status flips from Standby to Armed. One idea, one moment.    */
+/*                                                                      */
+/* Replaces: DonatePageStyles, DonateFeaturePill and DonateUs.          */
+/* Icons needed in your lucide-react import (all already there):        */
+/*   Radio, Check, Copy, Mail, ArrowRight, ArrowUpRight, Loader2,       */
+/*   HeartHandshake, QrCode                                             */
+/* ==================================================================== */
+
+/* ---- CHANGE THESE ---------------------------------------------------- */
+
+
+const WAVE_BARS = 44;
+
+const StandbyWave = memo(function StandbyWave({ armed }) {
+  return (
+    <div className={`dn-wave ${armed ? "is-armed" : ""}`} aria-hidden="true">
+      {Array.from({ length: WAVE_BARS }).map((_, i) => (
+        <span
+          key={i}
+          className="dn-bar"
+          style={{ "--i": i, "--p": 0.25 + ((i * 37) % 70) / 100 }}
+        />
+      ))}
+    </div>
+  );
+});
+
+/* ------------------------- charity alert signup ------------------------- */
+const NotifyForm = memo(function NotifyForm({ onArmed }) {
+  const { isDark } = useTheme();
+  const [email, setEmail] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [done, setDone] = useState(false);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    if (!email || busy) return;
+    setBusy(true);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "5c65cafd-afcc-4079-b9c3-59cf1e9d02f9",
+          subject: "Charity alert signup — Wildwood Records",
+          from_name: "Wildwood Records Charity Alerts",
+          email,
+          message: `Charity stream / event alert signup: ${email}`,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setDone(true);
+        setEmail("");
+        onArmed();
+      } else {
+        toast.error(data.message || "Couldn't sign you up. Please try again.");
       }
-    })();
-  }, []);
+    } catch {
+      toast.error("Couldn't reach the server. Check your connection and try again.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  if (done) {
+    return (
+      <div className={`flex items-start gap-3 rounded-2xl border p-4 ${isDark ? "border-emerald-400/25 bg-emerald-400/[0.06]" : "border-emerald-600/25 bg-emerald-50"}`}>
+        <span className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${isDark ? "bg-emerald-400 text-black" : "bg-emerald-600 text-white"}`}>
+          <Check size={14} strokeWidth={3} aria-hidden="true" />
+        </span>
+        <p className={`text-sm leading-relaxed ${isDark ? "text-emerald-100" : "text-emerald-900"}`}>
+          You're on the list. We'll email you when a charity stream or event is announced.
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div className="pt-32 md:pt-44 pb-24 px-5 md:px-8 lg:px-10 relative z-10">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className={`absolute -top-32 right-[-10%] w-[560px] h-[560px] rounded-full blur-[24px] ${isDark ? "bg-[radial-gradient(circle,rgba(16,185,129,0.12),transparent_70%)]" : "bg-[radial-gradient(circle,rgba(16,185,129,0.10),transparent_70%)]"}`} />
-        <div className={`absolute bottom-[-14%] left-[-8%] w-[520px] h-[520px] rounded-full blur-[24px] ${isDark ? "bg-[radial-gradient(circle,rgba(245,158,11,0.07),transparent_70%)]" : "bg-[radial-gradient(circle,rgba(245,158,11,0.06),transparent_70%)]"}`} />
-      </div>
+    <form onSubmit={submit} className="flex flex-col gap-3 sm:flex-row">
+      <input
+        type="email"
+        required
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="your@email.com"
+        aria-label="Email address for charity alerts"
+        disabled={busy}
+        className={`min-w-0 flex-1 rounded-full border px-5 py-3 text-sm backdrop-blur-md transition-colors duration-300 focus:outline-none disabled:opacity-60 ${isDark ? "border-neutral-700 bg-black/50 text-white placeholder-neutral-500 focus:border-white" : "border-neutral-300 bg-white text-neutral-900 placeholder-neutral-400 shadow-sm focus:border-neutral-900"}`}
+      />
+      <button
+        type="submit"
+        disabled={busy}
+        className={`press-feedback inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-70 ${isDark ? "bg-white text-black hover:bg-neutral-200" : "bg-neutral-900 text-white hover:bg-black"}`}
+      >
+        {busy ? "Signing up…" : "Notify me"}
+        {busy ? <Loader2 size={15} className="animate-spin" aria-hidden="true" /> : <ArrowRight size={15} aria-hidden="true" />}
+      </button>
+    </form>
+  );
+});
 
-      <div className="max-w-7xl mx-auto relative">
-        <Reveal>
-          <div className="flex items-center gap-3 mb-6">
-            <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-            </span>
-            <span className={`text-xs sm:text-sm tracking-[0.25em] uppercase font-semibold ${isDark ? "text-emerald-300" : "text-emerald-700"}`}>
-              Urgent · Assam Flood Relief
-            </span>
+/* ==================================================================== */
+/* HELP THE LABEL — PAYMENTS PAUSED + ENGAGEMENT                         */
+/*                                                                      */
+/* WHAT TO DO IN App.jsx                                                 */
+/*  1. DELETE these (the whole UPI / QR direct-support feature):         */
+/*       SHOW_DIRECT_SUPPORT, LABEL_UPI, SUPPORT_AMOUNTS, UPI_APPS,      */
+/*       buildUpiLink(), and the SupportPanel component.                 */
+/*     KEEP: WAVE_BARS, StandbyWave, NotifyForm.                         */
+/*  2. PASTE everything below in the spot SupportPanel used to occupy    */
+/*     (right above `const DonateUs`).                                   */
+/*  3. In DonateUs, replace the `{SHOW_DIRECT_SUPPORT && (...)}` block   */
+/*     with the JSX at the very bottom of this file.                     */
+/*                                                                      */
+/* No new imports needed. Everything used here is already imported:      */
+/* Check, Copy, Share2, Disc3, Music2, RotateCw, ArrowUpRight, toast,    */
+/* motion, AnimatePresence, plus the local Instagram / Spotify /         */
+/* Youtube icons and RELEASES / ARTISTS data.                            */
+/* ==================================================================== */
+
+const dnCard = (isDark) =>
+  `h-full rounded-3xl border backdrop-blur-xl p-6 md:p-10 ${isDark
+    ? "border-white/10 bg-white/[0.03]"
+    : "border-neutral-200 bg-white/80 shadow-[0_24px_70px_-34px_rgba(0,0,0,0.2)]"}`;
+
+/* ------------------------------------------------------------------ */
+/* 1. PAYMENTS PAUSED — "the record is still being cut"                */
+/*                                                                      */
+/* A vinyl record whose groove is only partly cut. The cut arc shows    */
+/* how far the build is; the label in the middle says what's missing.   */
+/* Tapping it spins the record (it eases to a stop, no snapping back)   */
+/* and counts your spins. Edit PAY_STAGES as the backend progresses:    */
+/* change a stage's `state` to "done" | "active" | "queued" and the     */
+/* arc and the "Stage x of y" line update by themselves.                */
+/* ------------------------------------------------------------------ */
+const PAY_STAGES = [
+  { label: "Donation page", note: "Designed and live", state: "done" },
+  { label: "Payment backend", note: "Being built now", state: "active" },
+  { label: "Receipts and confirmation", note: "Starts once the backend is in", state: "queued" },
+  { label: "Payments open", note: "We'll announce it here and by email", state: "queued" },
+];
+
+/* [spins needed, line shown]. The highest reached milestone wins. */
+const TAP_LINES = [
+  [1, "Needle down. Payments aren't open yet, but the record is turning."],
+  [5, "Five spins. The groove is still being cut, so keep going."],
+  [15, "Fifteen. You're good at this."],
+  [30, "Thirty spins. Please drink some water."],
+  [60, "Sixty. We'd offer you a seat at the console, but payments come first."],
+];
+
+const SPINS_KEY = "wildwood-record-spins";
+function readSpins() {
+  try { return Number(localStorage.getItem(SPINS_KEY)) || 0; } catch { return 0; }
+}
+function writeSpins(n) {
+  try { localStorage.setItem(SPINS_KEY, String(n)); } catch { /* storage blocked: the count just won't persist */ }
+}
+
+const PaymentsPaused = memo(function PaymentsPaused() {
+  const { isDark } = useTheme();
+  const [spins, setSpins] = useState(readSpins);
+  const [angle, setAngle] = useState(0);
+  const [notes, setNotes] = useState([]);
+
+  const done = PAY_STAGES.filter((s) => s.state === "done").length;
+  const active = PAY_STAGES.filter((s) => s.state === "active").length;
+  const arc = Math.round(((done + active * 0.5) / PAY_STAGES.length) * 100);
+  const stageNo = Math.min(done + 1, PAY_STAGES.length);
+
+  const spin = () => {
+    const next = spins + 1;
+    setSpins(next);
+    writeSpins(next);
+    /* Adding to the angle (instead of toggling a class) lets the CSS
+       transition ease the record to a stop from wherever it is. */
+    setAngle((a) => a + 540 + Math.round(Math.random() * 180));
+
+    const id = `${Date.now()}-${Math.random()}`;
+    const glyph = ["\u266A", "\u266B", "\u2669"][next % 3];
+    const nx = Math.round(Math.random() * 120 - 60);
+    setNotes((n) => [...n.slice(-5), { id, glyph, nx }]);
+    setTimeout(() => setNotes((n) => n.filter((x) => x.id !== id)), 1600);
+  };
+
+  const line = [...TAP_LINES].reverse().find(([at]) => spins >= at)?.[1];
+  const ink = isDark ? "text-white" : "text-neutral-900";
+  const body = isDark ? "text-neutral-400" : "text-neutral-600";
+
+  return (
+    <div className={dnCard(isDark)}>
+      <style>{`
+        .pp-disc { transition: transform 2.2s cubic-bezier(0.12, 0.75, 0.2, 1); will-change: transform; }
+        @keyframes ppNote {
+          0%   { opacity: 0; transform: translate(-50%, 0) scale(0.8); }
+          15%  { opacity: 1; }
+          100% { opacity: 0; transform: translate(calc(-50% + var(--nx)), -130px) scale(1.25); }
+        }
+        .pp-note { animation: ppNote 1.6s ease-out forwards; }
+        @media (prefers-reduced-motion: reduce) {
+          .pp-disc { transition: none; }
+          .pp-note { animation: none; opacity: 0; }
+        }
+      `}</style>
+
+      <div className="grid items-center gap-10 md:grid-cols-[auto_1fr] md:gap-14">
+        {/* ------------------------ the record ------------------------ */}
+        <div className="mx-auto text-center">
+          <div className="relative">
+            <button
+              type="button"
+              onClick={spin}
+              aria-label="Spin the record"
+              className="relative mx-auto block h-56 w-56 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-4 focus-visible:ring-offset-transparent sm:h-64 sm:w-64"
+            >
+              <span
+                className="pp-disc absolute inset-0 rounded-full shadow-[0_24px_60px_-20px_rgba(0,0,0,0.8)]"
+                style={{
+                  transform: `rotate(${angle}deg)`,
+                  background: "repeating-radial-gradient(circle at center, #0d0d0d 0 2px, #1b1b1b 2px 3px)",
+                }}
+              >
+                {/* the part of the groove that has been cut so far */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background: `conic-gradient(from -90deg, rgba(16,185,129,0.6) 0 ${arc}%, transparent ${arc}% 100%)`,
+                    WebkitMask: "radial-gradient(circle, transparent 36%, #000 37%, #000 96%, transparent 97%)",
+                    mask: "radial-gradient(circle, transparent 36%, #000 37%, #000 96%, transparent 97%)",
+                  }}
+                />
+                {/* sheen so it reads as vinyl, not a pie chart */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-full"
+                  style={{ background: "conic-gradient(from 20deg, transparent 0 20%, rgba(255,255,255,0.07) 25%, transparent 32% 70%, rgba(255,255,255,0.07) 75%, transparent 82%)" }}
+                />
+                {/* centre label */}
+                <span className="absolute left-1/2 top-1/2 flex h-[34%] w-[34%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-amber-300 text-center text-neutral-900">
+                  <span className="font-display text-[0.7rem] font-bold leading-none sm:text-xs">Payments</span>
+                  <span className="mt-1 text-[0.55rem] font-semibold leading-none sm:text-[0.62rem]">Test pressing</span>
+                </span>
+                <span aria-hidden="true" className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black" />
+              </span>
+            </button>
+
+            {/* notes rising off the record */}
+            <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-1/4">
+              {notes.map((n) => (
+                <span
+                  key={n.id}
+                  className={`pp-note absolute left-1/2 text-2xl ${isDark ? "text-emerald-300" : "text-emerald-600"}`}
+                  style={{ "--nx": `${n.nx}px` }}
+                >
+                  {n.glyph}
+                </span>
+              ))}
+            </div>
           </div>
-          <h1 className={`font-display text-page-title max-w-3xl mb-6 ${isDark ? "text-white" : "text-neutral-900"}`}>
-            When the Brahmaputra rises, we answer.
-          </h1>
-          <p className={`text-sm md:text-base lg:text-lg max-w-2xl leading-relaxed ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
-            {settings?.campaignDescription ||
-              "Each monsoon, flooding across Assam forces families from their homes, cuts villages off from food and clean water, and washes away livelihoods built over generations. Every rupee you give moves directly to the ground."}
+
+          <p className={`mt-5 min-h-[2.75rem] max-w-[17rem] text-sm leading-relaxed ${body}`} aria-live="polite">
+            {line || "Tap the record."}
           </p>
-        </Reveal>
+          {spins > 0 && (
+            <p className={`mt-1 text-xs ${isDark ? "text-neutral-500" : "text-neutral-500"}`}>
+              {spins} {spins === 1 ? "spin" : "spins"} so far. This count stays in your browser only.
+            </p>
+          )}
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mt-12 md:mt-16 items-start">
-          {/* --------------------- left: the situation --------------------- */}
-          <div className="lg:col-span-6 xl:col-span-7 space-y-6 md:space-y-8">
-            <Reveal delay={60}>
-              <div className="sub-card p-7 md:p-9">
-                <h2 className={`font-display text-2xl md:text-3xl mb-4 ${isDark ? "text-white" : "text-neutral-900"}`}>
-                  Where your contribution goes
-                </h2>
-                <p className={`text-sm md:text-base leading-[1.85] mb-8 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
-                  We work with verified NGOs and volunteer networks operating in the
-                  worst-affected districts. Funds are released against on-ground needs
-                  — shelter first, then food, water and medical care — and every verified
-                  gift below is reflected in the running total in real time.
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {RELIEF_ALLOCATIONS.map((item) => (
-                    <div key={item.title} className={`rounded-2xl border p-5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 ${isDark ? "border-white/5 bg-black/30 hover:border-emerald-400/30" : "border-neutral-200 bg-white hover:border-emerald-600/40 shadow-[0_4px_20px_rgba(0,0,0,0.04)]"}`}>
-                      <span className={`sub-tile w-11 h-11 mb-4 ${isDark ? "text-emerald-300" : "text-emerald-700"}`}>
-                        <item.icon size={19} aria-hidden="true" />
-                      </span>
-                      <p className={`text-sm font-semibold mb-1.5 ${isDark ? "text-neutral-200" : "text-neutral-800"}`}>{item.title}</p>
-                      <p className="sub-hint">{item.copy}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
+        {/* ------------------------ the status ------------------------ */}
+        <div>
+          <p className={`mb-3 inline-flex items-center gap-2.5 text-sm font-semibold ${isDark ? "text-amber-300" : "text-amber-700"}`}>
+            <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
+            </span>
+            Payments are paused
+          </p>
 
-          </div>
+          <h2 className={`font-display text-section-title mb-4 leading-[1.05] ${ink}`}>
+            We're cutting this one properly.
+          </h2>
+          <p className={`mb-8 max-w-lg text-sm leading-relaxed md:text-base ${body}`}>
+            Direct payments are switched off until our backend services are finished, so every contribution can be confirmed and receipted the right way. Nothing on this page can take money in the meantime, and nothing is lost by waiting.
+          </p>
 
-          {/* ------------------ right: sticky action rail ------------------ */}
-          <div className="lg:col-span-6 xl:col-span-5 lg:sticky lg:top-28 space-y-6">
-            <ReliefPaymentCard settings={settings} loading={loadingSettings} />
-            <RecentDonationsWidget />
-          </div>
+          <ol className={`divide-y ${isDark ? "divide-white/10" : "divide-neutral-200"}`}>
+            {PAY_STAGES.map((s) => (
+              <li key={s.label} className="flex items-center gap-4 py-3.5">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center" aria-hidden="true">
+                  {s.state === "done" && (
+                    <span className={`flex h-6 w-6 items-center justify-center rounded-full ${isDark ? "bg-emerald-400 text-black" : "bg-emerald-600 text-white"}`}>
+                      <Check size={13} strokeWidth={3} />
+                    </span>
+                  )}
+                  {s.state === "active" && (
+                    <span className="relative flex h-6 w-6 items-center justify-center rounded-full border-2 border-amber-400">
+                      <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                    </span>
+                  )}
+                  {s.state === "queued" && (
+                    <span className={`h-6 w-6 rounded-full border-2 border-dashed ${isDark ? "border-white/20" : "border-black/20"}`} />
+                  )}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className={`block text-sm font-semibold ${s.state === "queued" ? (isDark ? "text-neutral-400" : "text-neutral-500") : ink}`}>{s.label}</span>
+                  <span className={`block text-xs ${isDark ? "text-neutral-500" : "text-neutral-500"}`}>{s.note}</span>
+                </span>
+                <span className={`shrink-0 text-xs font-semibold ${s.state === "done" ? (isDark ? "text-emerald-300" : "text-emerald-700") : s.state === "active" ? (isDark ? "text-amber-300" : "text-amber-700") : (isDark ? "text-neutral-500" : "text-neutral-400")}`}>
+                  {s.state === "done" ? "Done" : s.state === "active" ? "In progress" : "Up next"}
+                </span>
+              </li>
+            ))}
+          </ol>
+
+          <p className={`mt-5 text-xs ${isDark ? "text-neutral-500" : "text-neutral-500"}`}>
+            Stage {stageNo} of {PAY_STAGES.length}. Leave your email in the charity alerts box above and you'll hear the moment this changes.
+          </p>
         </div>
       </div>
     </div>
   );
 });
+
+/* ------------------------------------------------------------------ */
+/* 2. WAYS TO HELP RIGHT NOW (all free, all one tap)                    */
+/* ------------------------------------------------------------------ */
+const SupportNow = memo(function SupportNow() {
+  const { isDark } = useTheme();
+
+  const share = async () => {
+    const url = window.location.origin;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: "Wildwood Records", text: "Songs from the undergrowth.", url });
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      toast.success("Link copied. Send it to one person.");
+    } catch (err) {
+      if (err && err.name === "AbortError") return; /* they closed the share sheet */
+      toast.error("Couldn't share from here. Copy the address from your browser instead.");
+    }
+  };
+
+  const items = [
+    { icon: Spotify, title: "Stream the playlist", why: "Plays and saves help streaming apps show our records to more listeners.", href: "https://open.spotify.com/playlist/0VcWEPPwzeUP2xUSm5JzY9", tint: "#1DB954" },
+    { icon: Youtube, title: "Subscribe on YouTube", why: "The quickest way to catch a charity stream when it goes live.", href: "https://youtube.com/@wildwoodrecords", tint: "#FF0000" },
+    { icon: Instagram, title: "Follow on Instagram", why: "Pop-up sessions and secret drops get announced there first.", href: "https://www.instagram.com/wildwood_records", tint: "#ee2a7b" },
+  ];
+
+  const tile = `press-feedback group flex h-full flex-col rounded-2xl border p-5 text-left transition-colors duration-300 ${isDark ? "border-white/10 bg-black/20 hover:border-white/30" : "border-neutral-200 bg-white hover:border-neutral-400"}`;
+
+  return (
+    <div className={dnCard(isDark)}>
+      <h2 className={`font-display mb-2 text-2xl md:text-3xl ${isDark ? "text-white" : "text-neutral-900"}`}>
+        Help right now, for free
+      </h2>
+      <p className={`mb-7 max-w-xl text-sm leading-relaxed md:text-base ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
+        Payments are paused, but the label still grows when people listen and share. Each of these takes under ten seconds.
+      </p>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {items.map((it) => {
+          const Icon = it.icon;
+          return (
+            <a key={it.title} href={it.href} target="_blank" rel="noopener noreferrer" className={tile}>
+              <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-full" style={{ color: it.tint, backgroundColor: `${it.tint}1f` }}>
+                <Icon size={18} />
+              </span>
+              <span className={`mb-1.5 flex items-center gap-1.5 text-sm font-semibold ${isDark ? "text-white" : "text-neutral-900"}`}>
+                {it.title}
+                <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+              </span>
+              <span className={`text-xs leading-relaxed ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>{it.why}</span>
+            </a>
+          );
+        })}
+
+        <button type="button" onClick={share} className={tile}>
+          <span className={`mb-4 flex h-10 w-10 items-center justify-center rounded-full ${isDark ? "bg-white/10 text-white" : "bg-black/5 text-neutral-900"}`}>
+            <Share2 size={18} aria-hidden="true" />
+          </span>
+          <span className={`mb-1.5 text-sm font-semibold ${isDark ? "text-white" : "text-neutral-900"}`}>Pass it on</span>
+          <span className={`text-xs leading-relaxed ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
+            Send the site to one person who'd like it. Word of mouth still beats everything.
+          </span>
+        </button>
+      </div>
+    </div>
+  );
+});
+
+/* ------------------------------------------------------------------ */
+/* 3. LABEL FACTS — computed from RELEASES / ARTISTS, so they never     */
+/*    go stale when you add a song.                                     */
+/* ------------------------------------------------------------------ */
+function computeLabelFacts() {
+  const toSecs = (d) => { const [m, s] = d.split(":").map(Number); return m * 60 + s; };
+
+  const byYear = {};
+  RELEASES.forEach((r) => { byYear[r.year] = (byYear[r.year] || 0) + 1; });
+  const [topYear, topCount] = Object.entries(byYear).sort((a, b) => b[1] - a[1])[0];
+
+  const topArtist = [...ARTISTS].sort((a, b) => b.releases.length - a.releases.length)[0];
+  const bySecs = [...RELEASES].sort((a, b) => toSecs(b.duration) - toSecs(a.duration));
+  const longest = bySecs[0];
+  const shortest = bySecs[bySecs.length - 1];
+  const totalSecs = RELEASES.reduce((sum, r) => sum + toSecs(r.duration), 0);
+  const hrs = Math.floor(totalSecs / 3600);
+  const mins = Math.round((totalSecs % 3600) / 60);
+
+  return [
+    `${topCount} of our ${RELEASES.length} releases came out in ${topYear}, our busiest year so far.`,
+    `${topArtist.name} appears on the most tracks in the catalogue: ${topArtist.releases.length}.`,
+    `${longest.title} is the longest release at ${longest.duration}.`,
+    `${shortest.title} is the shortest at ${shortest.duration}. Easy to replay.`,
+    `Play every release back to back and you'd listen for ${hrs}h ${mins}m.`,
+    `${ARTISTS.length} artists, producers and collaborators are on the roster.`,
+  ];
+}
+
+const LabelFacts = memo(function LabelFacts() {
+  const { isDark } = useTheme();
+  const facts = useMemo(computeLabelFacts, []);
+  const [i, setI] = useState(() => Math.floor(Math.random() * facts.length));
+
+  return (
+    <div className={`${dnCard(isDark)} flex flex-col`}>
+      <h2 className={`font-display mb-6 text-2xl md:text-3xl ${isDark ? "text-white" : "text-neutral-900"}`}>
+        Did you know?
+      </h2>
+
+      <div className="min-h-[7rem] flex-1" aria-live="polite">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.p
+            key={i}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className={`font-display text-2xl leading-snug md:text-3xl ${isDark ? "text-neutral-100" : "text-neutral-900"}`}
+          >
+            {facts[i]}
+          </motion.p>
+        </AnimatePresence>
+      </div>
+
+      <div className="mt-6 flex items-center justify-between gap-4">
+        <button
+          type="button"
+          onClick={() => setI((n) => (n + 1) % facts.length)}
+          className={`press-feedback inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors duration-300 ${isDark ? "border-neutral-700 text-white hover:border-white" : "border-neutral-300 text-neutral-900 hover:border-neutral-900"}`}
+        >
+          <RotateCw size={14} aria-hidden="true" /> Another one
+        </button>
+        <span className={`text-xs tabular-nums ${isDark ? "text-neutral-500" : "text-neutral-500"}`}>
+          {i + 1} of {facts.length}
+        </span>
+      </div>
+    </div>
+  );
+});
+
+/* ------------------------------------------------------------------ */
+/* 4. WHICH CAME FIRST? — two covers, guess the earlier release.        */
+/*    Streak is session-only on purpose: no storage, no backend.        */
+/* ------------------------------------------------------------------ */
+function pickPair() {
+  let a, b;
+  do {
+    a = RELEASES[Math.floor(Math.random() * RELEASES.length)];
+    b = RELEASES[Math.floor(Math.random() * RELEASES.length)];
+  } while (a.id === b.id || a.year === b.year);
+  return [a, b];
+}
+
+const ReleaseDuel = memo(function ReleaseDuel() {
+  const { isDark } = useTheme();
+  const [pair, setPair] = useState(pickPair);
+  const [picked, setPicked] = useState(null);
+  const [streak, setStreak] = useState(0);
+  const [best, setBest] = useState(0);
+
+  const earlier = Number(pair[0].year) < Number(pair[1].year) ? pair[0] : pair[1];
+  const revealed = picked !== null;
+  const won = revealed && picked === earlier.id;
+
+  const choose = (r) => {
+    if (revealed) return;
+    setPicked(r.id);
+    if (r.id === earlier.id) {
+      const s = streak + 1;
+      setStreak(s);
+      setBest((b) => Math.max(b, s));
+    } else {
+      setStreak(0);
+    }
+  };
+
+  const next = () => { setPair(pickPair()); setPicked(null); };
+
+  const faceClass = (r) => {
+    const base = "press-feedback group w-full rounded-2xl border p-3 text-left transition-colors duration-300 disabled:cursor-default";
+    if (!revealed) return `${base} ${isDark ? "border-white/10 bg-black/20 hover:border-white/40" : "border-neutral-200 bg-white hover:border-neutral-500"}`;
+    if (r.id === earlier.id) return `${base} ${isDark ? "border-emerald-400/60 bg-emerald-400/10" : "border-emerald-600/50 bg-emerald-50"}`;
+    if (r.id === picked) return `${base} ${isDark ? "border-red-400/50 bg-red-400/10" : "border-red-500/40 bg-red-50"}`;
+    return `${base} opacity-60 ${isDark ? "border-white/10" : "border-neutral-200"}`;
+  };
+
+  return (
+    <div className={`${dnCard(isDark)} flex flex-col`}>
+      <div className="mb-6 flex items-start justify-between gap-4">
+        <div>
+          <h2 className={`font-display text-2xl md:text-3xl ${isDark ? "text-white" : "text-neutral-900"}`}>Which came first?</h2>
+          <p className={`mt-1.5 text-sm ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>Pick the release that came out earlier.</p>
+        </div>
+        <div className={`shrink-0 text-right text-xs leading-relaxed ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
+          <p>Streak <span className={`font-semibold tabular-nums ${isDark ? "text-white" : "text-neutral-900"}`}>{streak}</span></p>
+          <p>Best <span className={`font-semibold tabular-nums ${isDark ? "text-white" : "text-neutral-900"}`}>{best}</span></p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3 md:gap-4">
+        {pair.map((r) => (
+          <button key={r.id} type="button" onClick={() => choose(r)} disabled={revealed} className={faceClass(r)}>
+            <span className="relative mb-3 block aspect-square overflow-hidden rounded-xl bg-neutral-800">
+              <img src={r.coverImg} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+            </span>
+            <span className={`block truncate font-display text-lg leading-tight ${isDark ? "text-white" : "text-neutral-900"}`}>{r.title}</span>
+            <span className={`block truncate text-xs ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>{r.artist}</span>
+            <span className={`mt-2 block h-4 text-xs font-semibold tabular-nums ${r.id === earlier.id ? (isDark ? "text-emerald-300" : "text-emerald-700") : (isDark ? "text-neutral-400" : "text-neutral-600")}`}>
+              {revealed ? r.year : ""}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      <div className="mt-5 flex min-h-[2.75rem] items-center justify-between gap-4" aria-live="polite">
+        <p className={`text-sm ${isDark ? "text-neutral-300" : "text-neutral-700"}`}>
+          {!revealed && "Your call."}
+          {revealed && won && (streak >= 5 ? `Right again. ${streak} in a row, you could run the catalogue.` : "Right. Good ear.")}
+          {revealed && !won && `Not this time. ${earlier.title} came out in ${earlier.year}.`}
+        </p>
+        {revealed && (
+          <button
+            type="button"
+            onClick={next}
+            className={`press-feedback inline-flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-300 ${isDark ? "bg-white text-black hover:bg-neutral-200" : "bg-neutral-900 text-white hover:bg-black"}`}
+          >
+            Next pair <ArrowRight size={14} aria-hidden="true" />
+          </button>
+        )}
+      </div>
+    </div>
+  );
+});
+
+/* ==================================================================== */
+/* IN DonateUs — replace the whole `{SHOW_DIRECT_SUPPORT && ( ... )}`    */
+/* block with this:                                                      */
+/* ==================================================================== */
+/*
+
+        <Reveal>
+          <div className="mt-20 md:mt-28">
+            <PaymentsPaused />
+          </div>
+        </Reveal>
+
+        <Reveal>
+          <div className="mt-6 md:mt-8">
+            <SupportNow />
+          </div>
+        </Reveal>
+
+        <div className="mt-6 grid gap-6 md:mt-8 md:gap-8 lg:grid-cols-2">
+          <Reveal className="h-full"><LabelFacts /></Reveal>
+          <Reveal className="h-full"><ReleaseDuel /></Reveal>
+        </div>
+
+*/
+
+/* -------------------------------- page ---------------------------------- */
+const DonateUs = memo(function DonateUs() {
+  const { isDark } = useTheme();
+  const [armed, setArmed] = useState(false);
+
+  const ink = isDark ? "text-white" : "text-neutral-900";
+  const body = isDark ? "text-neutral-400" : "text-neutral-600";
+  const amber = isDark ? "text-amber-300" : "text-amber-700";
+  const green = isDark ? "text-emerald-300" : "text-emerald-700";
+
+  const rows = [
+    { label: "Charity streams", value: "None scheduled" },
+    { label: "Benefit events", value: "None scheduled" },
+    { label: "Where we'll announce", value: "Right here, and by email" },
+  ];
+
+  return (
+    <div className="relative z-10 px-5 pb-28 pt-32 md:px-8 md:pt-44 lg:px-10">
+      <style>{`
+        /* Wave: flatline with one blip travelling along it (standby),
+           full bounce once armed. transform/opacity only. */
+        .dn-wave { display: flex; align-items: center; gap: 3px; height: 72px; }
+        .dn-bar {
+          flex: 1; height: 100%; border-radius: 999px; background: currentColor;
+          transform: scaleY(0.04); transform-origin: center; opacity: 0.45;
+        }
+        .dn-wave:not(.is-armed) .dn-bar {
+          animation: dnBlip 4.8s ease-in-out infinite;
+          animation-delay: calc(var(--i) * 60ms);
+        }
+        @keyframes dnBlip {
+          0%, 18%, 100% { transform: scaleY(0.04); opacity: 0.45; }
+          9% { transform: scaleY(0.5); opacity: 1; }
+        }
+        .dn-wave.is-armed .dn-bar {
+          opacity: 1;
+          animation: dnLive 1.1s ease-in-out infinite;
+          animation-delay: calc(var(--i) * -70ms);
+        }
+        @keyframes dnLive {
+          0%, 100% { transform: scaleY(0.12); }
+          50% { transform: scaleY(var(--p)); }
+        }
+
+        /* One entrance, staggered. */
+        @keyframes dnRise {
+          from { opacity: 0; transform: translate3d(0, 16px, 0); }
+          to { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+        .dn-rise { opacity: 0; animation: dnRise 0.9s var(--ease-out-expo) forwards; }
+
+        @media (prefers-reduced-motion: reduce) {
+          .dn-rise { animation: none; opacity: 1; }
+          .dn-wave:not(.is-armed) .dn-bar,
+          .dn-wave.is-armed .dn-bar { animation: none; }
+          .dn-wave.is-armed .dn-bar { transform: scaleY(var(--p)); }
+        }
+      `}</style>
+
+      {/* soft ambient light: amber on standby, green when armed */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute -top-32 right-[-8%] h-[560px] w-[560px] rounded-full blur-[60px] transition-opacity duration-1000"
+          style={{
+            background: armed
+              ? "radial-gradient(circle, rgba(16,185,129,0.18), transparent 65%)"
+              : "radial-gradient(circle, rgba(245,158,11,0.14), transparent 65%)",
+            opacity: isDark ? 1 : 0.7,
+          }}
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl">
+        {/* ============================ HERO ============================ */}
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+          <div>
+            <p
+              className={`dn-rise mb-6 inline-flex items-center gap-2.5 text-sm font-medium ${isDark ? "text-neutral-300" : "text-neutral-600"}`}
+              style={{ animationDelay: "0.05s" }}
+            >
+              <HeartHandshake size={16} className={green} aria-hidden="true" />
+              Help the label
+            </p>
+
+            <h1 className={`dn-rise font-display text-page-title mb-6 ${ink}`} style={{ animationDelay: "0.15s" }}>
+              Be there when we give back.
+            </h1>
+
+            <p className={`dn-rise max-w-xl text-base leading-relaxed md:text-lg ${body}`} style={{ animationDelay: "0.3s" }}>
+              Wildwood Records runs on listeners who show up. When we host a charity stream or a benefit event, you'll hear about it here first. Nothing is scheduled today, so leave your email and we'll tell you the moment that changes.
+            </p>
+          </div>
+
+          {/* ======================= STANDBY CONSOLE ======================= */}
+          <div className="dn-rise" style={{ animationDelay: "0.35s" }}>
+            <div className={`rounded-3xl border p-6 backdrop-blur-xl md:p-8 ${isDark ? "border-white/10 bg-white/[0.04] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]" : "border-neutral-200 bg-white/85 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.25)]"}`}>
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <span className={`inline-flex items-center gap-2 text-sm font-semibold ${ink}`}>
+                  <Radio size={16} aria-hidden="true" />
+                  Charity alerts
+                </span>
+                <span
+                  className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold ${armed
+                    ? isDark ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-300" : "border-emerald-600/30 bg-emerald-50 text-emerald-700"
+                    : isDark ? "border-amber-400/30 bg-amber-400/10 text-amber-300" : "border-amber-600/30 bg-amber-50 text-amber-700"
+                    }`}
+                  role="status"
+                >
+                  <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+                    <span className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-60 ${armed ? "bg-emerald-400" : "bg-amber-400"}`} />
+                    <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${armed ? "bg-emerald-400" : "bg-amber-400"}`} />
+                  </span>
+                  {armed ? "Armed" : "Standby"}
+                </span>
+              </div>
+
+              <div className={`mb-6 transition-colors duration-700 ${armed ? green : amber}`}>
+                <StandbyWave armed={armed} />
+              </div>
+
+              <dl className={`mb-7 divide-y text-sm ${isDark ? "divide-white/10" : "divide-neutral-200"}`}>
+                {rows.map((r) => (
+                  <div key={r.label} className="flex items-center justify-between gap-4 py-3">
+                    <dt className={isDark ? "text-neutral-500" : "text-neutral-500"}>{r.label}</dt>
+                    <dd className={`text-right font-medium ${isDark ? "text-neutral-200" : "text-neutral-800"}`}>{r.value}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <p className={`mb-3 text-sm font-medium ${ink}`}>
+                Tell me when a charity stream or event goes live
+              </p>
+              <NotifyForm onArmed={() => setArmed(true)} />
+            </div>
+          </div>
+        </div>
+
+        {/* ===================== OPTIONAL DIRECT SUPPORT ===================== */}
+        <Reveal>
+          <div className="mt-20 md:mt-28">
+            <PaymentsPaused />
+          </div>
+        </Reveal>
+
+        <Reveal>
+          <div className="mt-6 md:mt-8">
+            <SupportNow />
+          </div>
+        </Reveal>
+
+        <div className="mt-6 grid gap-6 md:mt-8 md:gap-8 lg:grid-cols-2">
+          <Reveal className="h-full"><LabelFacts /></Reveal>
+          <Reveal className="h-full"><ReleaseDuel /></Reveal>
+        </div>
+      </div>
+    </div>
+  );
+});
+
 
 /* ============================== ADMIN AREA ============================== */
 
@@ -4929,11 +5578,10 @@ const AdminDashboard = memo(function AdminDashboard() {
                       <td className="p-4 font-semibold">{inr.format(d.amount)}</td>
                       <td className="p-4 font-mono text-xs">{d.transactionId}</td>
                       <td className="p-4">
-                        <span className={`text-[10px] font-bold uppercase px-2.5 py-1 rounded-full ${
-                          d.status === "Verified" ? (isDark ? "bg-emerald-400/15 text-emerald-300" : "bg-emerald-600/10 text-emerald-700")
+                        <span className={`text-[10px] font-bold uppercase px-2.5 py-1 rounded-full ${d.status === "Verified" ? (isDark ? "bg-emerald-400/15 text-emerald-300" : "bg-emerald-600/10 text-emerald-700")
                           : d.status === "Rejected" ? (isDark ? "bg-red-400/15 text-red-300" : "bg-red-600/10 text-red-700")
-                          : (isDark ? "bg-amber-400/15 text-amber-300" : "bg-amber-600/10 text-amber-700")
-                        }`}>{d.status}</span>
+                            : (isDark ? "bg-amber-400/15 text-amber-300" : "bg-amber-600/10 text-amber-700")
+                          }`}>{d.status}</span>
                       </td>
                       <td className="p-4 text-xs">{new Date(d.createdAt).toLocaleDateString("en-IN")}</td>
                       <td className="p-4">
@@ -5097,46 +5745,46 @@ const Contact = memo(function Contact() {
   };
 
   /* ------------------------------ submit ------------------------------ */
-  
+
   const [isSending, setIsSending] = useState(false);
 
-const submitDemo = async (e) => {
-  e.preventDefault();
-  const form = e.currentTarget;
+  const submitDemo = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
 
-  /* Custom controls first, so every problem is visible at once. */
-  const errs = {};
-  if (contentType.length === 0) errs.contentType = "Select at least one content type.";
-  if (!instrumental) errs.instrumental = "Please choose Yes or No.";
-  if (!releaseFormat) errs.releaseFormat = "Please choose a format.";
-  if (!version) errs.version = "Please choose Original or Remix.";
-  setGroupErrors(errs);
+    /* Custom controls first, so every problem is visible at once. */
+    const errs = {};
+    if (contentType.length === 0) errs.contentType = "Select at least one content type.";
+    if (!instrumental) errs.instrumental = "Please choose Yes or No.";
+    if (!releaseFormat) errs.releaseFormat = "Please choose a format.";
+    if (!version) errs.version = "Please choose Original or Remix.";
+    setGroupErrors(errs);
 
-  const nativesOk = form.checkValidity();
-  if (!nativesOk) form.reportValidity();
-  if (!nativesOk || Object.values(errs).some(Boolean)) return;
+    const nativesOk = form.checkValidity();
+    if (!nativesOk) form.reportValidity();
+    if (!nativesOk || Object.values(errs).some(Boolean)) return;
 
-  setIsSending(true);
-  try {
-    const formData = new FormData(form);
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData,
-    });
-    const data = await response.json();
+    setIsSending(true);
+    try {
+      const formData = new FormData(form);
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
 
-    if (data.success) {
-      setSubmitted(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      toast.error(data.message || "Something went wrong — please try again.");
+      if (data.success) {
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: "instant" });
+      } else {
+        toast.error(data.message || "Something went wrong — please try again.");
+      }
+    } catch (err) {
+      toast.error("Couldn't reach the server. Check your connection and try again.");
+    } finally {
+      setIsSending(false);
     }
-  } catch (err) {
-    toast.error("Couldn't reach the server. Check your connection and try again.");
-  } finally {
-    setIsSending(false);
-  }
-};
+  };
 
   const resetAll = () => {
     setContentType([]); setInstrumental(""); setReleaseFormat(""); setVersion("");
@@ -5174,15 +5822,15 @@ const submitDemo = async (e) => {
             </div>
           </div>
         ) : (
-      <form key={formKey} onSubmit={submitDemo} className="space-y-6 md:space-y-8">
-    <p className="sub-hint text-right" aria-hidden="true"><span className="sub-req">*</span> required</p>
-    
-    {/* 1. PUT YOUR ACTUAL KEY HERE */}
-    <input type="hidden" name="access_key" value="5c65cafd-afcc-4079-b9c3-59cf1e9d02f9" /> 
-    
-    {/* 2. REMOVE the hardcoded 'subject' input so the Dashboard takes over! */}
-    
-    <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+          <form key={formKey} onSubmit={submitDemo} className="space-y-6 md:space-y-8">
+            <p className="sub-hint text-right" aria-hidden="true"><span className="sub-req">*</span> required</p>
+
+            {/* 1. PUT YOUR ACTUAL KEY HERE */}
+            <input type="hidden" name="access_key" value="5c65cafd-afcc-4079-b9c3-59cf1e9d02f9" />
+
+            {/* 2. REMOVE the hardcoded 'subject' input so the Dashboard takes over! */}
+
+            <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 
             {/* ----------------------- 01 · general ----------------------- */}
             <Reveal>
@@ -5341,11 +5989,11 @@ const submitDemo = async (e) => {
                 By submitting you confirm you own or control all rights to this recording.
               </p>
               <PrimaryButton
-  icon={isSending ? Loader2 : ArrowUpRight}
-  className={`w-full md:w-auto ${isSending ? "opacity-70 pointer-events-none" : ""}`}
->
-  {isSending ? "Sending…" : "Submit Release"}
-</PrimaryButton>
+                icon={isSending ? Loader2 : ArrowUpRight}
+                className={`w-full md:w-auto ${isSending ? "opacity-70 pointer-events-none" : ""}`}
+              >
+                {isSending ? "Sending…" : "Submit Release"}
+              </PrimaryButton>
             </div>
           </form>
         )}
@@ -5526,11 +6174,10 @@ const ChannelStrip = memo(function ChannelStrip({ service, index, isActive, onSe
       onClick={() => onSelect(index)}
       aria-pressed={isActive}
       aria-label={`${service.title} — view details`}
-      className={`group relative shrink-0 w-[64px] sm:w-[78px] flex flex-col items-center pt-4 pb-3 px-2 rounded-2xl border transition-colors duration-400 ${
-        isActive
-          ? isDark ? "bg-white/[0.07] border-white/25" : "bg-black/[0.045] border-black/20"
-          : isDark ? "bg-white/[0.02] border-white/10 hover:border-white/20" : "bg-black/[0.015] border-black/10 hover:border-black/20"
-      }`}
+      className={`group relative shrink-0 w-[64px] sm:w-[78px] flex flex-col items-center pt-4 pb-3 px-2 rounded-2xl border transition-colors duration-400 ${isActive
+        ? isDark ? "bg-white/[0.07] border-white/25" : "bg-black/[0.045] border-black/20"
+        : isDark ? "bg-white/[0.02] border-white/10 hover:border-white/20" : "bg-black/[0.015] border-black/10 hover:border-black/20"
+        }`}
       style={isActive ? { borderColor: `${accent}55`, boxShadow: `inset 0 0 24px ${accent}14` } : undefined}
     >
       <span aria-hidden="true" className={`absolute top-2 left-2 w-1 h-1 rounded-full ${isDark ? "bg-white/25" : "bg-black/25"}`} />
@@ -5614,9 +6261,8 @@ const ServiceCategoryCard = memo(function ServiceCategoryCard({ group, index, on
       whileHover={{ y: -4 }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.3, ease: SERVICE_EASE }}
-      className={`group relative overflow-hidden rounded-3xl border p-7 md:p-9 text-left w-full ${
-        isDark ? "bg-gradient-to-b from-white/[0.04] to-transparent border-white/10 hover:border-white/25" : "bg-gradient-to-b from-black/[0.025] to-transparent border-black/10 hover:border-black/20"
-      }`}
+      className={`group relative overflow-hidden rounded-3xl border p-7 md:p-9 text-left w-full ${isDark ? "bg-gradient-to-b from-white/[0.04] to-transparent border-white/10 hover:border-white/25" : "bg-gradient-to-b from-black/[0.025] to-transparent border-black/10 hover:border-black/20"
+        }`}
     >
       {/* brushed texture + corner screws, same hardware language as the strips */}
       <div
@@ -5644,16 +6290,16 @@ const ServiceCategoryCard = memo(function ServiceCategoryCard({ group, index, on
       <p className={`text-sm mb-6 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>{meta.blurb}</p>
 
       <div className="flex items-center justify-between">
-  <div className="flex items-center gap-1.5" aria-hidden="true">
-    {group.items.slice(0, 6).map((s) => (
-      <span key={s.title} className="w-1.5 h-1.5 rounded-full transition-transform duration-300 group-hover:scale-125" style={{ backgroundColor: getAccent(s.title), boxShadow: `0 0 6px ${getAccent(s.title)}aa` }} />
-    ))}
-  </div>
-  <span className={`inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase ${isDark ? "text-neutral-300" : "text-neutral-700"}`}>
-    {group.items.length} Channels
-    <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-  </span>
-</div>
+        <div className="flex items-center gap-1.5" aria-hidden="true">
+          {group.items.slice(0, 6).map((s) => (
+            <span key={s.title} className="w-1.5 h-1.5 rounded-full transition-transform duration-300 group-hover:scale-125" style={{ backgroundColor: getAccent(s.title), boxShadow: `0 0 6px ${getAccent(s.title)}aa` }} />
+          ))}
+        </div>
+        <span className={`inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase ${isDark ? "text-neutral-300" : "text-neutral-700"}`}>
+          {group.items.length} Channels
+          <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </span>
+      </div>
     </motion.button>
   );
 });
@@ -5722,11 +6368,10 @@ const ConsoleReadout = memo(function ConsoleReadout({ service }) {
             onTap={() => setTimeout(() => setLitEmail(false), 700)}
             whileTap={{ scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className={`press-feedback inline-flex items-center gap-2.5 rounded-full pl-4 pr-5 py-2.5 text-xs font-bold tracking-[0.14em] uppercase border transition-colors duration-300 ${
-              litEmail
-                ? isDark ? "bg-white text-black border-white" : "bg-neutral-900 text-white border-neutral-900"
-                : isDark ? "border-white/15 bg-white/5 text-white" : "border-black/15 bg-black/5 text-neutral-900"
-            }`}
+            className={`press-feedback inline-flex items-center gap-2.5 rounded-full pl-4 pr-5 py-2.5 text-xs font-bold tracking-[0.14em] uppercase border transition-colors duration-300 ${litEmail
+              ? isDark ? "bg-white text-black border-white" : "bg-neutral-900 text-white border-neutral-900"
+              : isDark ? "border-white/15 bg-white/5 text-white" : "border-black/15 bg-black/5 text-neutral-900"
+              }`}
           >
             <Mail size={15} /> Email Studio
           </motion.a>
@@ -5864,9 +6509,8 @@ const Services = memo(function Services() {
                 <button
                   type="button"
                   onClick={() => setSelectedCategory(null)}
-                  className={`press-feedback inline-flex items-center gap-2 mb-8 rounded-full px-5 py-2.5 text-xs font-bold tracking-[0.15em] uppercase border transition-colors duration-300 ${
-                    isDark ? "border-white/15 text-white hover:bg-white hover:text-black" : "border-black/15 text-neutral-900 hover:bg-neutral-900 hover:text-white"
-                  }`}
+                  className={`press-feedback inline-flex items-center gap-2 mb-8 rounded-full px-5 py-2.5 text-xs font-bold tracking-[0.15em] uppercase border transition-colors duration-300 ${isDark ? "border-white/15 text-white hover:bg-white hover:text-black" : "border-black/15 text-neutral-900 hover:bg-neutral-900 hover:text-white"
+                    }`}
                 >
                   <ArrowLeft size={14} /> Back to All Services
                 </button>
@@ -5915,7 +6559,7 @@ const Services = memo(function Services() {
 
 function ReleaseModal({ release, onClose, playing, isPlaying: transportPlaying, togglePlay, progressMV, currentTime, onScrub }) {
   const { isDark } = useTheme();
-  
+
   if (!release) return null;
   /* Two distinct questions again: is THIS the loaded track, and is the
      transport running? The progress bar and timestamp key off the former
@@ -5941,7 +6585,7 @@ function ReleaseModal({ release, onClose, playing, isPlaying: transportPlaying, 
           pinning, handing sizing back to the parent's flex centering +
           sm:max-h-[85vh], restoring the normal centered dialog. */}
       <div className={`fixed inset-0 sm:relative sm:inset-auto w-full sm:max-w-4xl sm:h-auto sm:max-h-[85vh] rounded-t-3xl sm:rounded-3xl sm:border overflow-y-auto overscroll-contain animate-modal-in flex flex-col ${isDark ? "bg-[#080808] border-white/10 shadow-[0_40px_120px_-20px_rgba(0,0,0,1)]" : "bg-white border-black/10 shadow-[0_40px_120px_-20px_rgba(0,0,0,0.35)]"}`}>
-        
+
         {/* Sticky Header with Back Option & Close Button */}
         <div className={`sticky top-0 z-30 flex items-center justify-between px-6 py-4 backdrop-blur-xl border-b ${isDark ? "bg-[#080808]/90 border-white/5" : "bg-white/90 border-black/5"}`}>
           <button
@@ -5998,7 +6642,7 @@ function ReleaseModal({ release, onClose, playing, isPlaying: transportPlaying, 
                 </div>
                 <EQBars count={5} tall isPlaying={isPlaying} className="hidden sm:flex shrink-0" />
               </div>
-              
+
               <div className="flex items-center gap-3 w-full">
                 <span className="text-xs md:text-sm text-neutral-500 font-medium tabular-nums w-8 text-right">{isCurrentTrack ? currentTime : "0:00"}</span>
                 {/* Only the loaded track owns the shared playhead — a modal
@@ -6040,22 +6684,22 @@ function ReleaseModal({ release, onClose, playing, isPlaying: transportPlaying, 
             </div>
 
             <div className={`mt-auto pt-6 border-t space-y-4 ${isDark ? "border-white/5" : "border-black/10"}`}>
-               {release.composition && (
-                 <div className="flex justify-between text-sm md:text-base">
-                   <span className="text-neutral-500">Composition</span>
-                   <span className={`font-medium ${isDark ? "text-neutral-300" : "text-neutral-700"}`}>{release.composition}</span>
-                 </div>
-               )}
-               {release.lyrics && (
-                 <div className="flex justify-between text-sm md:text-base">
-                   <span className="text-neutral-500">Lyrics</span>
-                   <span className={`font-medium ${isDark ? "text-neutral-300" : "text-neutral-700"}`}>{release.lyrics}</span>
-                 </div>
-               )}
-               <div className="flex justify-between text-sm md:text-base">
-                 <span className="text-neutral-500">Label</span>
-                 <span className={`font-medium ${isDark ? "text-neutral-300" : "text-neutral-700"}`}>{release.credits}</span>
-               </div>
+              {release.composition && (
+                <div className="flex justify-between text-sm md:text-base">
+                  <span className="text-neutral-500">Composition</span>
+                  <span className={`font-medium ${isDark ? "text-neutral-300" : "text-neutral-700"}`}>{release.composition}</span>
+                </div>
+              )}
+              {release.lyrics && (
+                <div className="flex justify-between text-sm md:text-base">
+                  <span className="text-neutral-500">Lyrics</span>
+                  <span className={`font-medium ${isDark ? "text-neutral-300" : "text-neutral-700"}`}>{release.lyrics}</span>
+                </div>
+              )}
+              <div className="flex justify-between text-sm md:text-base">
+                <span className="text-neutral-500">Label</span>
+                <span className={`font-medium ${isDark ? "text-neutral-300" : "text-neutral-700"}`}>{release.credits}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -6130,9 +6774,9 @@ const SeekBar = memo(function SeekBar({
     const step = e.shiftKey ? 0.1 : 0.05;
     const current = progressMV.get();
     if (e.key === "ArrowRight") { e.preventDefault(); onSeek(Math.min(1, current + step), "end"); }
-    if (e.key === "ArrowLeft")  { e.preventDefault(); onSeek(Math.max(0, current - step), "end"); }
-    if (e.key === "Home")       { e.preventDefault(); onSeek(0, "end"); }
-    if (e.key === "End")        { e.preventDefault(); onSeek(1, "end"); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); onSeek(Math.max(0, current - step), "end"); }
+    if (e.key === "Home") { e.preventDefault(); onSeek(0, "end"); }
+    if (e.key === "End") { e.preventDefault(); onSeek(1, "end"); }
   }, [onSeek, progressMV]);
 
   return (
@@ -6182,7 +6826,7 @@ const GlobalPlayer = memo(function GlobalPlayer({ playingRelease, isPlaying, tog
       />
 
       <div className={`safe-bottom backdrop-blur-2xl border-t px-4 md:px-8 py-3 md:py-4 flex items-center justify-between gap-3 md:gap-8 ${isDark ? "bg-black/90 border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]" : "bg-white/90 border-neutral-200 shadow-[0_-10px_40px_rgba(0,0,0,0.12)]"}`}>
-        
+
         <div className="flex items-center gap-3 md:gap-4 flex-1 min-w-0 cursor-pointer group" onClick={() => onOpen(playingRelease)}>
           <div className={`relative w-10 h-10 md:w-14 md:h-14 rounded-md md:rounded-lg overflow-hidden shrink-0 shadow-md border transition-colors ${isDark ? "border-white/10 group-hover:border-white/30" : "border-black/10 group-hover:border-black/30"}`}>
             <img src={playingRelease.coverImg} alt={playingRelease.title} className="w-full h-full object-cover" />
@@ -6397,6 +7041,10 @@ function AppShell() {
     navigate(viewToPath(id));
   }, [navigate]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const [selectedRelease, setSelectedRelease] = useState(null);
 
   /* ------------------------- PLAYBACK STATE -------------------------
@@ -6595,8 +7243,8 @@ function AppShell() {
   const backToTrackListing = useCallback(() => {
     setSelectedRelease(null);
     setView("releases");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+    window.scrollTo(0, 0);
+  }, [setView]);
 
   /* Derived from currentTrackId (not isPlaying), so the mini player, its
      artwork, title, artist and duration all stay put while paused. */
@@ -6619,10 +7267,10 @@ function AppShell() {
 
     const artwork = playingRelease.coverImg
       ? ["96x96", "192x192", "256x256", "384x384", "512x512"].map((sizes) => ({
-          src: playingRelease.coverImg,
-          sizes,
-          type: "image/jpeg",
-        }))
+        src: playingRelease.coverImg,
+        sizes,
+        type: "image/jpeg",
+      }))
       : [];
 
     navigator.mediaSession.metadata = new window.MediaMetadata({
@@ -6643,7 +7291,7 @@ function AppShell() {
     const handlers = [
       /* Hardware transport mirrors the on-screen buttons exactly: resume
          from the existing position, pause without unloading anything. */
-      ["play", () => { const a = audioRef.current; if (a && loadedIdRef.current) a.play().then(() => setIsPlaying(true)).catch(() => {}); }],
+      ["play", () => { const a = audioRef.current; if (a && loadedIdRef.current) a.play().then(() => setIsPlaying(true)).catch(() => { }); }],
       ["pause", () => { const a = audioRef.current; if (a) { a.pause(); setIsPlaying(false); } }],
       ["stop", () => { const a = audioRef.current; if (a) { a.pause(); a.currentTime = 0; setIsPlaying(false); } }],
       ["seekbackward", (d) => { const a = audioRef.current; if (a) a.currentTime = Math.max(0, a.currentTime - (d.seekOffset || 10)); }],
@@ -6665,10 +7313,10 @@ function AppShell() {
 
   return (
     <ClickBurstProvider>
-      <div className={`relative min-h-screen font-sans overflow-x-hidden ${isDark ? "bg-[#050505] text-white selection:bg-white selection:text-black" : "bg-[#fafafa] text-neutral-900 selection:bg-neutral-900 selection:text-white"}`}>
+      <div className={`relative min-h-screen font-sans ${isDark ? "bg-[#050505] text-white selection:bg-white selection:text-black" : "bg-[#fafafa] text-neutral-900 selection:bg-neutral-900 selection:text-white"}`}>
         <GoogleFontsLoader />
-<ScrollProgressBar />
-<VinylCursor isPlaying={isPlaying} />
+        <ScrollProgressBar />
+        <VinylCursor isPlaying={isPlaying} />
         {/* preload="metadata" grabs just the header (duration, seek table)
             rather than buffering audio nobody asked for — tracks start
             near-instantly on press without competing with first paint. */}
@@ -6681,8 +7329,8 @@ function AppShell() {
 
         <GlobalPolishStyles />
         <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
-      <CraftStyles />
-      <SubmissionStyles />
+        <CraftStyles />
+        <SubmissionStyles />
 
         {showPreloader && <Preloader visible={isLoading} />}
 
@@ -6693,24 +7341,24 @@ function AppShell() {
         {/* mode="wait" holds the incoming page until the outgoing one has
             fully left — the difference between a considered scene change
             and two pages briefly wrestling. */}
-<AnimatePresence mode="wait" initial={false}>
-        <PageWrapper key={view}>
-          {view === "home" && (
-            <Home setView={setView} openRelease={openRelease} playing={currentTrackId} isPlaying={isPlaying} togglePlay={togglePlay} />
-          )}
-          {view === "releases" && (
-            <Releases openRelease={openRelease} playing={currentTrackId} isPlaying={isPlaying} togglePlay={togglePlay} />
-          )}
-          {view === "artists" && <Artists />}
-          {view === "about" && <About />}
-          {view === "events" && <Events />}
-          {view === "services" && <Services setView={setView} />}
-          {view === "donateus" && <DonateUs />}
-          {view === "admin" && <AdminDashboard />}
-          {view === "contact" && <Contact />}
-          {view === "privacy" && <PrivacyPolicy />}
-          {view === "terms" && <TermsAndConditions />}
-        </PageWrapper>
+        <AnimatePresence mode="wait" initial={false}>
+          <PageWrapper key={view}>
+            {view === "home" && (
+              <Home setView={setView} openRelease={openRelease} playing={currentTrackId} isPlaying={isPlaying} togglePlay={togglePlay} />
+            )}
+            {view === "releases" && (
+              <Releases openRelease={openRelease} playing={currentTrackId} isPlaying={isPlaying} togglePlay={togglePlay} />
+            )}
+            {view === "artists" && <Artists />}
+            {view === "about" && <About />}
+            {view === "events" && <Events />}
+            {view === "services" && <Services setView={setView} />}
+            {view === "donateus" && <DonateUs />}
+            {view === "admin" && <AdminDashboard />}
+            {view === "contact" && <Contact />}
+            {view === "privacy" && <PrivacyPolicy />}
+            {view === "terms" && <TermsAndConditions />}
+          </PageWrapper>
         </AnimatePresence>
 
         <Footer setView={setView} />
@@ -6727,7 +7375,7 @@ function AppShell() {
         />
 
         {!selectedRelease && (
-          <GlobalPlayer 
+          <GlobalPlayer
             playingRelease={playingRelease}
             isPlaying={isPlaying}
             togglePlay={togglePlay}
@@ -6785,7 +7433,7 @@ const PrivacyPolicy = memo(function PrivacyPolicy() {
   return (
     <div className="pt-32 md:pt-44 pb-24 px-5 md:px-8 lg:px-10 relative z-10">
       <div className="max-w-5xl mx-auto">
-        
+
         {/* Header Section */}
         <Reveal>
           <Eyebrow>Legal & Compliance</Eyebrow>
@@ -6793,7 +7441,7 @@ const PrivacyPolicy = memo(function PrivacyPolicy() {
             Privacy Policy
           </h1>
           <p className={`text-sm md:text-lg max-w-3xl leading-[1.8] ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
-            Welcome to <strong className={isDark ? "text-white" : "text-black"}>Wildwood Records</strong>. 
+            Welcome to <strong className={isDark ? "text-white" : "text-black"}>Wildwood Records</strong>.
             A premier independent music label, wholly operated, managed, and digitally powered under the parent banner of <strong className={isDark ? "text-white" : "text-black"}>LDM Associates</strong>.
           </p>
           <p className={`text-sm md:text-base max-w-3xl leading-[1.8] mt-6 ${isDark ? "text-neutral-500" : "text-neutral-500"}`}>
@@ -6821,28 +7469,28 @@ const PrivacyPolicy = memo(function PrivacyPolicy() {
           {/* Contact Section */}
           {/* Contact Section */}
           <Reveal>
-             <div className={`rounded-3xl p-8 md:p-12 border text-center ${isDark ? "bg-neutral-900/50 border-white/10" : "bg-white border-neutral-200 shadow-xl"}`}>
-                <ShieldCheck size={32} className={`mx-auto mb-6 ${isDark ? "text-emerald-400" : "text-emerald-600"}`} />
-                <h2 className={`font-display text-2xl md:text-3xl mb-4 ${isDark ? "text-white" : "text-neutral-900"}`}>
-                  Changes & Contact
-                </h2>
-                <p className={`text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
-                  LDM Associates reserves the right to update or modify our Privacy Policy from time to time. If you have any questions regarding how your data is handled, please reach out to us.
-                </p>
-                
-                {/* UPDATED BUTTONS */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <GhostButton href="mailto:contactwwrecords@gmail.com">
-                    <Mail size={16} /> contactwwrecords@gmail.com
-                  </GhostButton>
-                  
-                  {/* Replace the href below with the actual LDM Associates Instagram link */}
-                  <PrimaryButton href="https://www.instagram.com/ldmassociates?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" icon={Instagram}>
-                    LDM Associates
-                  </PrimaryButton>
-                </div>
+            <div className={`rounded-3xl p-8 md:p-12 border text-center ${isDark ? "bg-neutral-900/50 border-white/10" : "bg-white border-neutral-200 shadow-xl"}`}>
+              <ShieldCheck size={32} className={`mx-auto mb-6 ${isDark ? "text-emerald-400" : "text-emerald-600"}`} />
+              <h2 className={`font-display text-2xl md:text-3xl mb-4 ${isDark ? "text-white" : "text-neutral-900"}`}>
+                Changes & Contact
+              </h2>
+              <p className={`text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
+                LDM Associates reserves the right to update or modify our Privacy Policy from time to time. If you have any questions regarding how your data is handled, please reach out to us.
+              </p>
 
-             </div>
+              {/* UPDATED BUTTONS */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <GhostButton href="mailto:contactwwrecords@gmail.com">
+                  <Mail size={16} /> contactwwrecords@gmail.com
+                </GhostButton>
+
+                {/* Replace the href below with the actual LDM Associates Instagram link */}
+                <PrimaryButton href="https://www.instagram.com/ldmassociates?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" icon={Instagram}>
+                  LDM Associates
+                </PrimaryButton>
+              </div>
+
+            </div>
           </Reveal>
         </div>
 
@@ -6888,7 +7536,7 @@ const TermsAndConditions = memo(function TermsAndConditions() {
   return (
     <div className="pt-32 md:pt-44 pb-24 px-5 md:px-8 lg:px-10 relative z-10">
       <div className="max-w-5xl mx-auto">
-        
+
         {/* Header Section */}
         <Reveal>
           <Eyebrow>Legal & Compliance</Eyebrow>
@@ -6922,25 +7570,25 @@ const TermsAndConditions = memo(function TermsAndConditions() {
 
           {/* Contact Section (Reused for consistency) */}
           <Reveal>
-             <div className={`rounded-3xl p-8 md:p-12 border text-center ${isDark ? "bg-neutral-900/50 border-white/10" : "bg-white border-neutral-200 shadow-xl"}`}>
-                <ShieldCheck size={32} className={`mx-auto mb-6 ${isDark ? "text-emerald-400" : "text-emerald-600"}`} />
-                <h2 className={`font-display text-2xl md:text-3xl mb-4 ${isDark ? "text-white" : "text-neutral-900"}`}>
-                  Legal Inquiries
-                </h2>
-                <p className={`text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
-                  We reserve the right to amend these terms and conditions at any time. If you have any inquiries regarding licensing, usage, or compliance, please reach out to our team.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <GhostButton href="mailto:contactwwrecords@gmail.com">
-                    <Mail size={16} /> contactwwrecords@gmail.com
-                  </GhostButton>
-                  
-                  <PrimaryButton href="https://www.instagram.com/ldmassociates?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" icon={Instagram}>
-                    LDM Associates
-                  </PrimaryButton>
-                </div>
-             </div>
+            <div className={`rounded-3xl p-8 md:p-12 border text-center ${isDark ? "bg-neutral-900/50 border-white/10" : "bg-white border-neutral-200 shadow-xl"}`}>
+              <ShieldCheck size={32} className={`mx-auto mb-6 ${isDark ? "text-emerald-400" : "text-emerald-600"}`} />
+              <h2 className={`font-display text-2xl md:text-3xl mb-4 ${isDark ? "text-white" : "text-neutral-900"}`}>
+                Legal Inquiries
+              </h2>
+              <p className={`text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8 ${isDark ? "text-neutral-400" : "text-neutral-600"}`}>
+                We reserve the right to amend these terms and conditions at any time. If you have any inquiries regarding licensing, usage, or compliance, please reach out to our team.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <GhostButton href="mailto:contactwwrecords@gmail.com">
+                  <Mail size={16} /> contactwwrecords@gmail.com
+                </GhostButton>
+
+                <PrimaryButton href="https://www.instagram.com/ldmassociates?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" icon={Instagram}>
+                  LDM Associates
+                </PrimaryButton>
+              </div>
+            </div>
           </Reveal>
         </div>
 

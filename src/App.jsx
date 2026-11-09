@@ -3,7 +3,7 @@ import myLogo from "./assets/logo.png";
 import {
   Sun, Moon, Mail, Phone, Check, ChevronDown, AlertCircle, Apple, Cloud, HeartHandshake, CreditCard, ShieldCheck, Tent, Droplets, HeartPulse, Play, Pause, Menu, X, ArrowRight, ArrowLeft, ArrowUpRight, Disc3, Calendar, MapPin, Ticket, Music2, UploadCloud, Send, Headphones, Mic, Radio, Music, ChevronUp, ListMusic, Search, BadgeCheck, Crown, Sparkles, Users,
   PenTool, SlidersHorizontal, Video, Film, Palette, Image, Globe, Share2, Megaphone, RotateCw, FileText,
-  QrCode, Copy, Download, Lock, LogOut, Trash2, FileDown, Filter, ClipboardCheck, BadgeX, Landmark, Loader2
+  QrCode, Copy, Download, Lock, LogOut, Trash2, FileDown, Filter, ClipboardCheck, BadgeX, Landmark, Loader2, Volume2, VolumeX
 } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
@@ -2572,9 +2572,9 @@ const getAccent = (title) => SERVICE_ACCENTS[title] || "#10b981";
 const PAGE_EASE = [0.22, 1, 0.36, 1];
 
 const pageVariants = {
-  initial: { opacity: 0, y: 12 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: PAGE_EASE } },
-  exit: { opacity: 0, transition: { duration: 0.25 } },
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.35, ease: "easeOut" } },
+  exit: { opacity: 0, transition: { duration: 0.2, ease: "easeIn" } },
 };
 
 const pageVariantsReduced = {
@@ -2977,148 +2977,874 @@ const Nav = memo(function Nav({ view, setView }) {
 
 /* ------------------------------------------------------------------ */
 /* LOCAL LINKEDIN ICON — same hand-drawn style as the Instagram/       */
-/* YouTube/Spotify icons already defined in this file.                 */
 /* ------------------------------------------------------------------ */
-function LinkedInIcon({ size = 14, className = "", style }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} style={style}>
-      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.44-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.11 20.45H3.56V9h3.55v11.45z" />
-    </svg>
-  );
+/* THE UNDERGROWTH DUBPLATE LATHE — Interactive Vinyl Listening Deck  */
+/* A tactile, playful analog vinyl deck crafted right into the footer */
+/* allowing users to drop the needle, scratch, change RPM speeds,     */
+/* flip between Side A/B, and experience authentic vinyl warmth with  */
+/* actual music playback from the Wildwood Records catalogue!         */
+/* ------------------------------------------------------------------ */
+
+// Curated 7-inch & 12-inch dubplate cuts from the Wildwood catalogue
+const DUBPLATE_TRACKS = [
+  {
+    id: "dp-1",
+    title: "Tumar Smriti",
+    artist: "Debangaraj",
+    cat: "WW-7701",
+    year: "2025",
+    color: "#064e3b",
+    coverImg: "/cover/Smriti.webp",
+    audioSrc: "/audio/smriti.mpeg",
+    sideA: "Tumar Smriti (Acoustic Master)",
+    sideB: "Smriti (Instrumental Undergrowth Cut)",
+  },
+  {
+    id: "dp-2",
+    title: "Xihoron",
+    artist: "DHRTX & Ankur Kashyap",
+    cat: "WW-7702",
+    year: "2024",
+    color: "#1e1b4b",
+    coverImg: "/cover/Xihoron.webp",
+    audioSrc: "/audio/xihoron.mpeg",
+    sideA: "Xihoron (Late Night Lathe)",
+    sideB: "Xihoron (Ambient Dub)",
+  },
+  {
+    id: "dp-3",
+    title: "Tumi Ahiba",
+    artist: "Rishi Raj Phukan",
+    cat: "WW-7703",
+    year: "2023",
+    color: "#78350f",
+    coverImg: "/cover/TumiAhiba.webp",
+    audioSrc: "/audio/tumiAhiba.mpeg",
+    sideA: "Tumi Ahiba (Studio Reel)",
+    sideB: "Tumi Ahiba (Tape Echo Mix)",
+  },
+  {
+    id: "dp-4",
+    title: "Monore",
+    artist: "Wildwood Studio",
+    cat: "WW-7704",
+    year: "2024",
+    color: "#4c0519",
+    coverImg: "/cover/Monore.webp",
+    audioSrc: "/audio/monore.mp3",
+    sideA: "Monore (Dubplate Master)",
+    sideB: "Monore (45 RPM Radio Cut)",
+  },
+];
+
+// Lightweight procedural Web Audio API engine for organic vinyl crackle,
+// needle drops, and realistic scratching feedback (zero external audio files required).
+class VinylAcousticEngine {
+  constructor() {
+    this.ctx = null;
+    this.crackleNode = null;
+    this.humNode = null;
+    this.masterGain = null;
+    this.isPlaying = false;
+  }
+
+  init() {
+    if (!this.ctx && typeof window !== "undefined") {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) this.ctx = new AudioCtx();
+    }
+    if (this.ctx && this.ctx.state === "suspended") {
+      this.ctx.resume().catch(() => {});
+    }
+  }
+
+  start(rpm = 33) {
+    this.init();
+    if (!this.ctx || this.isPlaying) return;
+    this.isPlaying = true;
+
+    try {
+      this.masterGain = this.ctx.createGain();
+      this.masterGain.gain.setValueAtTime(0.001, this.ctx.currentTime);
+      this.masterGain.gain.exponentialRampToValueAtTime(0.26, this.ctx.currentTime + 0.4);
+      this.masterGain.connect(this.ctx.destination);
+
+      // Low analog tube hum (subtle 55Hz warmth)
+      this.humNode = this.ctx.createOscillator();
+      this.humNode.type = "sine";
+      const humFreq = rpm === 78 ? 75 : rpm === 45 ? 62 : 54;
+      this.humNode.frequency.setValueAtTime(humFreq, this.ctx.currentTime);
+
+      const humFilter = this.ctx.createBiquadFilter();
+      humFilter.type = "lowpass";
+      humFilter.frequency.setValueAtTime(95, this.ctx.currentTime);
+
+      const humGain = this.ctx.createGain();
+      humGain.gain.setValueAtTime(0.03, this.ctx.currentTime);
+
+      this.humNode.connect(humFilter);
+      humFilter.connect(humGain);
+      humGain.connect(this.masterGain);
+      this.humNode.start();
+
+      // Procedural surface noise + random dust crackles
+      const bufferSize = this.ctx.sampleRate * 2;
+      const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      let b0 = 0, b1 = 0, b2 = 0;
+      for (let i = 0; i < bufferSize; i++) {
+        const white = Math.random() * 2 - 1;
+        b0 = 0.99886 * b0 + white * 0.055;
+        b1 = 0.99332 * b1 + white * 0.075;
+        b2 = 0.96900 * b2 + white * 0.15;
+        let val = (b0 + b1 + b2 + white * 0.5) * 0.032;
+
+        // Needle dust pop
+        if (Math.random() < 0.0016) {
+          val += (Math.random() * 2 - 1) * 0.28;
+        }
+        output[i] = val;
+      }
+
+      this.crackleNode = this.ctx.createBufferSource();
+      this.crackleNode.buffer = noiseBuffer;
+      this.crackleNode.loop = true;
+
+      const vinylFilter = this.ctx.createBiquadFilter();
+      vinylFilter.type = "bandpass";
+      vinylFilter.frequency.setValueAtTime(rpm === 78 ? 1000 : rpm === 45 ? 850 : 720, this.ctx.currentTime);
+      vinylFilter.Q.setValueAtTime(0.85, this.ctx.currentTime);
+
+      this.crackleNode.connect(vinylFilter);
+      vinylFilter.connect(this.masterGain);
+      this.crackleNode.start();
+    } catch {
+      // safe fallback if audio is not permitted
+    }
+  }
+
+  scratch() {
+    this.init();
+    if (!this.ctx) return;
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = "sawtooth";
+      const now = this.ctx.currentTime;
+      osc.frequency.setValueAtTime(140 + Math.random() * 180, now);
+      osc.frequency.exponentialRampToValueAtTime(360 + Math.random() * 140, now + 0.05);
+      osc.frequency.exponentialRampToValueAtTime(80, now + 0.12);
+
+      gain.gain.setValueAtTime(0.16, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.13);
+
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = "lowpass";
+      filter.frequency.setValueAtTime(1400, now);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.14);
+    } catch {
+      // fallback
+    }
+  }
+
+  stop() {
+    if (!this.isPlaying) return;
+    this.isPlaying = false;
+    if (this.masterGain && this.ctx) {
+      try {
+        this.masterGain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.25);
+        setTimeout(() => {
+          try {
+            if (this.humNode) { this.humNode.stop(); this.humNode.disconnect(); }
+            if (this.crackleNode) { this.crackleNode.stop(); this.crackleNode.disconnect(); }
+          } catch {}
+        }, 260);
+      } catch {}
+    }
+  }
 }
 
-/* ------------------------------------------------------------------ */
-/* DEV CREDITS — premium signature badge, tuned to feel alive on touch */
-/* devices too. Three layers of "expensive":                           */
-/*   1. A slow-rotating conic-gradient hairline traces the pill's edge  */
-/*      PERMANENTLY (not just on hover) — the ambient shimmer premium   */
-/*      products use, identical on mobile and desktop, no pointer       */
-/*      required.                                                       */
-/*   2. Each name gets its own soft glow-pulsing dot, staggered by      */
-/*      index, so the row visibly breathes with zero interaction.       */
-/*   3. Tapping (mobile) or hovering (desktop) a name — driven by BOTH   */
-/*      Framer Motion's onHoverStart/End AND onTapStart/onTap, so touch  */
-/*      gets the exact same payoff a cursor does — flares to full        */
-/*      brightness in that developer's accent color, reveals their       */
-/*      LinkedIn glyph, grows an accent-colored underline, and dims      */
-/*      the other two names. The tap state auto-releases after a beat    */
-/*      so it reads as a deliberate flash, not a stuck toggle.           */
-/* ------------------------------------------------------------------ */
-const DEV_ACCENTS = ["#34d399", "#38bdf8", "#f472b6"]; // emerald / sky / pink — one per name, cycling
+const vinylAudio = new VinylAcousticEngine();
 
-const DevCreditsBadge = memo(function DevCreditsBadge({ developers }) {
+const UndergrowthVinylLathe = memo(function UndergrowthVinylLathe({ setView }) {
   const { isDark } = useTheme();
-  const [activeIdx, setActiveIdx] = useState(null);
+  const [trackIdx, setTrackIdx] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [rpm, setRpm] = useState(33);
+  const [side, setSide] = useState("A");
+  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [isFlipping, setIsFlipping] = useState(false);
+  const [needleOnRecord, setNeedleOnRecord] = useState(false);
+  const [scratchAngle, setScratchAngle] = useState(0);
+  const [isScratching, setIsScratching] = useState(false);
+  const [vuBounce, setVuBounce] = useState({ left: 35, right: 42 });
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  const audioRef = useRef(null);
+  const lastPointerRef = useRef(null);
+  const currentTrack = DUBPLATE_TRACKS[trackIdx] || DUBPLATE_TRACKS[0];
+
+  // Configure Audio Playback Rate based on selected RPM
+  useEffect(() => {
+    if (audioRef.current) {
+      const speedRate = rpm === 78 ? 1.75 : rpm === 45 ? 1.35 : 1.0;
+      audioRef.current.playbackRate = speedRate;
+    }
+  }, [rpm]);
+
+  // Handle Track Audio Source updates
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.src = currentTrack.audioSrc;
+      audioRef.current.load();
+      if (isPlaying) {
+        audioRef.current.play().catch(() => {});
+      }
+    }
+  }, [trackIdx]);
+
+  // Clean up audio on unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+      vinylAudio.stop();
+    };
+  }, []);
+
+  // VU Meter & Equalizer rhythm jitter animation while playing
+  useEffect(() => {
+    if (!isPlaying) {
+      setVuBounce({ left: 10, right: 12 });
+      return;
+    }
+    const interval = setInterval(() => {
+      const base = rpm === 78 ? 75 : rpm === 45 ? 60 : 48;
+      setVuBounce({
+        left: Math.min(96, Math.max(18, base + (Math.random() * 26 - 13))),
+        right: Math.min(96, Math.max(18, base + (Math.random() * 28 - 14))),
+      });
+    }, 100);
+    return () => clearInterval(interval);
+  }, [isPlaying, rpm]);
+
+  // Handle Play/Pause
+  const togglePlay = () => {
+    if (isPlaying) {
+      setIsPlaying(false);
+      setNeedleOnRecord(false);
+      if (audioRef.current) audioRef.current.pause();
+      vinylAudio.stop();
+    } else {
+      setIsPlaying(true);
+      setNeedleOnRecord(true);
+      if (audioRef.current) {
+        const speedRate = rpm === 78 ? 1.75 : rpm === 45 ? 1.35 : 1.0;
+        audioRef.current.playbackRate = speedRate;
+        audioRef.current.play().catch(() => {});
+      }
+      if (soundEnabled) vinylAudio.start(rpm);
+    }
+  };
+
+  // Change RPM
+  const handleRpmChange = (newRpm) => {
+    setRpm(newRpm);
+    if (audioRef.current) {
+      const speedRate = newRpm === 78 ? 1.75 : newRpm === 45 ? 1.35 : 1.0;
+      audioRef.current.playbackRate = speedRate;
+    }
+    if (isPlaying && soundEnabled) {
+      vinylAudio.stop();
+      setTimeout(() => vinylAudio.start(newRpm), 100);
+    }
+  };
+
+  // Switch Track Dubplate
+  const selectDubplate = (idx) => {
+    setTrackIdx(idx);
+    setIsPlaying(true);
+    setNeedleOnRecord(true);
+    if (soundEnabled) vinylAudio.start(rpm);
+  };
+
+  // Flip Vinyl Side
+  const flipSide = () => {
+    setIsFlipping(true);
+    setTimeout(() => {
+      setSide((prev) => (prev === "A" ? "B" : "A"));
+      setIsFlipping(false);
+    }, 350);
+  };
+
+  // Toggle Sound Warmth On/Off
+  const toggleSound = () => {
+    const next = !soundEnabled;
+    setSoundEnabled(next);
+    if (!next) {
+      vinylAudio.stop();
+    } else if (isPlaying) {
+      vinylAudio.start(rpm);
+    }
+  };
+
+  // Drag-to-scratch interaction
+  const handlePointerDown = (e) => {
+    setIsScratching(true);
+    lastPointerRef.current = { x: e.clientX, y: e.clientY };
+    vinylAudio.scratch();
+    if (audioRef.current && isPlaying) {
+      audioRef.current.pause();
+    }
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isScratching || !lastPointerRef.current) return;
+    const deltaX = e.clientX - lastPointerRef.current.x;
+    const deltaY = e.clientY - lastPointerRef.current.y;
+    const movement = deltaX + deltaY;
+
+    if (Math.abs(movement) > 4) {
+      setScratchAngle((prev) => prev + movement * 1.5);
+      if (audioRef.current && duration > 0) {
+        audioRef.current.currentTime = Math.max(
+          0,
+          Math.min(duration, audioRef.current.currentTime + movement * 0.12)
+        );
+      }
+      lastPointerRef.current = { x: e.clientX, y: e.clientY };
+      if (Math.random() > 0.4) vinylAudio.scratch();
+    }
+  };
+
+  const handlePointerUp = () => {
+    setIsScratching(false);
+    lastPointerRef.current = null;
+    if (audioRef.current && isPlaying) {
+      audioRef.current.play().catch(() => {});
+    }
+  };
+
+  // Audio time updates
+  const onTimeUpdate = () => {
+    if (audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime || 0);
+      setDuration(audioRef.current.duration || 0);
+    }
+  };
+
+  const onEnded = () => {
+    // Loop to next track or stop
+    setTrackIdx((prev) => (prev + 1) % DUBPLATE_TRACKS.length);
+  };
+
+  const formatTime = (secs) => {
+    if (!secs || isNaN(secs)) return "0:00";
+    const m = Math.floor(secs / 60);
+    const s = Math.floor(secs % 60);
+    return `${m}:${s < 10 ? "0" : ""}${s}`;
+  };
+
+  const progressFraction = duration > 0 ? currentTime / duration : 0;
+  // Tonearm physically tracks inward from outer rim (18deg) to inner runout (32deg)
+  const tonearmAngle = needleOnRecord ? 18 + progressFraction * 14 : 0;
+  const spinDuration = rpm === 78 ? "0.77s" : rpm === 45 ? "1.33s" : "1.82s";
 
   return (
-    <div className="relative inline-block">
-      <style>{`
-        @keyframes devBorderSpin { to { transform: rotate(360deg); } }
-        .dev-badge-border { animation: devBorderSpin 6s linear infinite; }
-        @keyframes devNamePulse {
-          0%, 100% { opacity: 0.55; transform: scale(1); }
-          50%      { opacity: 1; transform: scale(1.35); }
-        }
-        .dev-name-pulse { animation: devNamePulse 2.6s ease-in-out infinite; }
-        @media (prefers-reduced-motion: reduce) {
-          .dev-badge-border { animation: none; }
-          .dev-name-pulse { animation: none; opacity: 0.85; }
-        }
-      `}</style>
-
-      {/* Layer 1 — the permanent rotating hairline. A conic gradient sits
-          behind an opaque glass panel, so only a thin arc of it is ever
-          visible at once — the "spinning border" premium badges use,
-          built from two stacked layers rather than a border-image hack. */}
-      <div
-        aria-hidden="true"
-        className="dev-badge-border pointer-events-none absolute -inset-px rounded-full opacity-70"
-        style={{
-          background: `conic-gradient(from 0deg, transparent 0%, ${isDark ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.55)"} 8%, transparent 24%, transparent 100%)`,
-        }}
+    <div className="w-full max-w-5xl mx-auto my-6 md:my-10">
+      {/* Hidden Audio Player for Real Wildwood Track Playback */}
+      <audio
+        ref={audioRef}
+        src={currentTrack.audioSrc}
+        preload="metadata"
+        onTimeUpdate={onTimeUpdate}
+        onEnded={onEnded}
       />
 
+      <style>{`
+        @keyframes vinylSpinGrooves {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        .vinyl-spin-active {
+          animation: vinylSpinGrooves ${spinDuration} linear infinite;
+        }
+        @keyframes acousticAura {
+          0% { transform: scale(0.96); opacity: 0.6; }
+          50% { transform: scale(1.08); opacity: 0.15; }
+          100% { transform: scale(0.96); opacity: 0.6; }
+        }
+        .acoustic-aura-active {
+          animation: acousticAura 2.2s ease-in-out infinite;
+        }
+        @keyframes tubeFilamentGlow {
+          0%, 100% { filter: drop-shadow(0 0 6px rgba(245,158,11,0.6)); opacity: 0.85; }
+          50% { filter: drop-shadow(0 0 14px rgba(245,158,11,0.95)); opacity: 1; }
+        }
+        .tube-glow {
+          animation: tubeFilamentGlow 1.8s ease-in-out infinite;
+        }
+        @keyframes floatingNoteDrift {
+          0%   { transform: translateY(0px) scale(0.8); opacity: 0; }
+          40%  { opacity: 0.8; }
+          100% { transform: translateY(-40px) scale(1.1); opacity: 0; }
+        }
+        .floating-note-1 { animation: floatingNoteDrift 2.4s ease-out infinite; }
+        .floating-note-2 { animation: floatingNoteDrift 3.1s ease-out 1s infinite; }
+        .floating-note-3 { animation: floatingNoteDrift 2.8s ease-out 1.6s infinite; }
+      `}</style>
+
+      {/* Main Analog Lathe Console */}
       <div
-        className={`relative flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-3 px-8 py-4 rounded-full border backdrop-blur-xl transition-all duration-700 ${isDark
-          ? "bg-black/60 border-white/10 shadow-[0_0_50px_-15px_rgba(255,255,255,0.12)]"
-          : "bg-white/70 border-black/10 shadow-[0_0_50px_-15px_rgba(0,0,0,0.1)]"
-          }`}
+        className={`relative overflow-hidden rounded-3xl border backdrop-blur-2xl p-6 sm:p-8 md:p-10 transition-all duration-700 shadow-2xl ${
+          isDark
+            ? "bg-[#0b0c0e]/90 border-white/10 shadow-[0_30px_90px_-25px_rgba(0,0,0,0.9)]"
+            : "bg-[#f8f9fa]/95 border-black/10 shadow-[0_20px_70px_-20px_rgba(0,0,0,0.12)]"
+        }`}
       >
-        <span className="text-[10px] tracking-[0.25em] font-bold uppercase text-neutral-500 flex items-center gap-2">
-          <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
-          </span>
-          Engineered &amp; Crafted By
-        </span>
+        {/* Glowing Acoustic Aura when playing */}
+        <div
+          aria-hidden="true"
+          className={`pointer-events-none absolute -top-28 -left-28 w-96 h-96 rounded-full blur-[90px] transition-all duration-700 ${
+            isPlaying
+              ? "bg-emerald-500/30 opacity-70 acoustic-aura-active"
+              : isDark
+              ? "bg-white/5 opacity-20"
+              : "bg-black/5 opacity-10"
+          }`}
+        />
 
-        <span className={`hidden sm:block w-px h-4 ${isDark ? "bg-white/20" : "bg-black/20"}`} aria-hidden="true" />
+        {/* Top Header & Deck Telemetry */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-inherit">
+          <div className="flex items-center gap-3">
+            <span
+              className={`relative flex h-3 w-3 shrink-0 rounded-full transition-colors duration-500 ${
+                isPlaying ? "bg-emerald-400 shadow-[0_0_12px_#34d399]" : "bg-neutral-500"
+              }`}
+            >
+              {isPlaying && (
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              )}
+            </span>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] tracking-[0.25em] font-mono uppercase font-bold text-neutral-400">
+                  Dubplate Lathe MK-IV • Phono Stage
+                </span>
+                <span className={`text-[9px] px-1.5 py-0.5 rounded font-mono font-bold tracking-widest uppercase ${
+                  isPlaying ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40" : isDark ? "bg-white/10 text-neutral-300" : "bg-black/10 text-neutral-700"
+                }`}>
+                  {isPlaying ? "ON AIR" : "STANDBY"}
+                </span>
+              </div>
+              <p className={`text-base sm:text-lg font-display font-semibold ${isDark ? "text-white" : "text-neutral-900"}`}>
+                Wildwood Analog Dubplate Station
+              </p>
+            </div>
+          </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-3 text-[11px] font-bold tracking-[0.18em] uppercase">
-          {developers.map((dev, i) => {
-            const accent = DEV_ACCENTS[i % DEV_ACCENTS.length];
-            const isActive = activeIdx === i;
-            const isDimmed = activeIdx !== null && !isActive;
+          {/* Right Top Header: Analog Vacuum Tubes & VU Meters */}
+          <div className="flex items-center gap-4">
+            {/* Twin Glowing Vacuum Tubes (ECC83 Valve Emulation) */}
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl border border-inherit bg-black/20">
+              <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-neutral-400">
+                Tubes
+              </span>
+              <div className="flex gap-2">
+                {[1, 2].map((tube) => (
+                  <div
+                    key={tube}
+                    className={`relative w-3.5 h-6 rounded-t-full border border-neutral-600/60 bg-neutral-900/80 flex items-center justify-center overflow-hidden transition-all duration-500 ${
+                      isPlaying ? "tube-glow" : ""
+                    }`}
+                    title="Dual Valve Stage"
+                  >
+                    <div
+                      className={`w-1 h-3 rounded-full transition-all duration-500 ${
+                        isPlaying ? "bg-amber-400 shadow-[0_0_8px_#f59e0b]" : "bg-neutral-700"
+                      }`}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
 
-            return (
-              <React.Fragment key={dev.name}>
-                <motion.a
-                  href={dev.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onHoverStart={() => setActiveIdx(i)}
-                  onHoverEnd={() => setActiveIdx(null)}
-                  onTapStart={() => setActiveIdx(i)}
-                  onTap={() => setTimeout(() => setActiveIdx((cur) => (cur === i ? null : cur)), 900)}
-                  whileTap={{ scale: 0.94 }}
-                  animate={{
-                    opacity: isDimmed ? 0.35 : 1,
-                    scale: isActive ? 1.08 : 1,
-                    y: isActive ? -2 : 0,
+            {/* Dual Backlit Vintage Analog VU Meters */}
+            <div className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border font-mono text-[9px] ${
+              isDark ? "bg-black/50 border-white/10" : "bg-white/80 border-black/10"
+            }`}>
+              <span className="text-neutral-500 font-bold">VU-L</span>
+              <div className="w-12 sm:w-14 h-3 bg-neutral-800/80 rounded-full overflow-hidden relative flex items-center px-0.5">
+                <div
+                  className="h-2 rounded-full transition-all duration-100 ease-out"
+                  style={{
+                    width: `${vuBounce.left}%`,
+                    backgroundColor: vuBounce.left > 80 ? "#ef4444" : vuBounce.left > 60 ? "#f59e0b" : "#10b981",
                   }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative inline-flex items-center gap-1.5"
-                  style={{ color: isActive ? accent : undefined }}
-                >
-                  <span
-                    className="w-1 h-1 rounded-full dev-name-pulse"
-                    style={{
-                      backgroundColor: accent,
-                      boxShadow: isActive ? `0 0 8px 2px ${accent}` : `0 0 4px 1px ${accent}55`,
-                      animationDelay: `${i * 0.4}s`,
-                    }}
-                    aria-hidden="true"
-                  />
-                  <span className={isActive ? "" : isDark ? "text-neutral-300" : "text-neutral-700"}>
-                    {dev.name}
-                  </span>
-                  <LinkedInIcon
-                    size={11}
-                    className="transition-all duration-500"
-                    style={{ opacity: isActive ? 1 : 0.35, color: isActive ? accent : undefined }}
-                  />
-                  <span
-                    aria-hidden="true"
-                    className="absolute -bottom-1.5 left-0 h-[1.5px] origin-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                    style={{
-                      width: isActive ? "100%" : "0%",
-                      backgroundColor: accent,
-                      boxShadow: `0 0 6px ${accent}`,
-                    }}
-                  />
-                </motion.a>
+                />
+              </div>
+              <span className="text-neutral-500 font-bold ml-1">VU-R</span>
+              <div className="w-12 sm:w-14 h-3 bg-neutral-800/80 rounded-full overflow-hidden relative flex items-center px-0.5">
+                <div
+                  className="h-2 rounded-full transition-all duration-100 ease-out"
+                  style={{
+                    width: `${vuBounce.right}%`,
+                    backgroundColor: vuBounce.right > 80 ? "#ef4444" : vuBounce.right > 60 ? "#f59e0b" : "#10b981",
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
-                {i < developers.length - 1 && (
-                  <span className={`opacity-30 px-0.5 font-light ${isDark ? "text-white" : "text-black"}`}>&times;</span>
-                )}
-              </React.Fragment>
-            );
-          })}
+        {/* Center Stage: Turntable Deck & Live Track Controller */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          {/* Left: Turntable Platter & 12" Vinyl Record */}
+          <div className="lg:col-span-7 flex justify-center items-center relative">
+            
+            {/* Floating Music Notes while sound plays */}
+            {isPlaying && (
+              <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
+                <span className="floating-note-1 absolute top-12 left-16 text-emerald-400 text-sm font-bold">♪</span>
+                <span className="floating-note-2 absolute top-8 right-24 text-amber-300 text-base font-bold">♫</span>
+                <span className="floating-note-3 absolute bottom-14 left-20 text-cyan-400 text-xs font-bold">✦</span>
+              </div>
+            )}
+
+            {/* Turntable Plinth */}
+            <div
+              className={`relative w-64 h-64 sm:w-80 sm:h-80 md:w-88 md:h-88 rounded-full p-2.5 sm:p-3.5 border transition-all duration-500 select-none ${
+                isDark
+                  ? "bg-neutral-900/95 border-white/15 shadow-[inset_0_0_40px_rgba(0,0,0,0.8),0_20px_50px_rgba(0,0,0,0.6)]"
+                  : "bg-neutral-200/90 border-black/10 shadow-[inset_0_0_30px_rgba(0,0,0,0.1),0_20px_50px_rgba(0,0,0,0.1)]"
+              }`}
+            >
+              {/* Outer Strobe Markers Ring */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-1 rounded-full border border-dashed border-neutral-500/25 pointer-events-none"
+              />
+
+              {/* The Spinning Vinyl Disc */}
+              <div
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerLeave={handlePointerUp}
+                title="Click and drag across the vinyl to scratch!"
+                className={`relative w-full h-full rounded-full cursor-grab active:cursor-grabbing shadow-2xl overflow-hidden transition-transform duration-300 ${
+                  isFlipping ? "scale-95 rotate-180 opacity-60" : ""
+                } ${isPlaying && !isScratching ? "vinyl-spin-active" : ""}`}
+                style={{
+                  transform: isScratching ? `rotate(${scratchAngle}deg)` : undefined,
+                  background:
+                    "radial-gradient(circle, #0e0e11 0%, #15161a 18%, #08080a 28%, #141519 40%, #060608 55%, #18191f 70%, #0a0a0c 88%, #030304 100%)",
+                }}
+              >
+                {/* Physical Vinyl Microgrooves */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-full opacity-60 pointer-events-none"
+                  style={{
+                    backgroundImage: `repeating-radial-gradient(circle at center, transparent 0, transparent 2px, rgba(255,255,255,0.065) 3px, transparent 4px)`,
+                  }}
+                />
+
+                {/* Specular Light Reflection Sheen */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-full pointer-events-none opacity-45 mix-blend-screen"
+                  style={{
+                    background:
+                      "conic-gradient(from 40deg, transparent 0deg, rgba(255,255,255,0.24) 40deg, transparent 80deg, transparent 180deg, rgba(255,255,255,0.24) 220deg, transparent 260deg)",
+                  }}
+                />
+
+                {/* Center Vinyl Paper Label with Album Artwork */}
+                <div
+                  className={`absolute inset-0 m-auto w-24 h-24 sm:w-28 sm:h-28 rounded-full border flex flex-col items-center justify-center text-center p-2 transition-all duration-500 shadow-xl overflow-hidden ${
+                    side === "A"
+                      ? "border-amber-300/40 text-amber-100"
+                      : "border-cyan-300/40 text-cyan-100"
+                  }`}
+                  style={{
+                    background: `linear-gradient(135deg, ${currentTrack.color}dd, #0b0c0e 95%)`,
+                  }}
+                >
+                  {/* Subtle Album Cover Inset */}
+                  <div className="absolute inset-0 opacity-25 mix-blend-overlay">
+                    <img
+                      src={currentTrack.coverImg}
+                      alt={currentTrack.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <div className="relative z-10 flex flex-col items-center">
+                    <img
+                      src={myLogo}
+                      alt="Wildwood"
+                      className="w-4 h-4 sm:w-5 sm:h-5 object-contain brightness-0 invert drop-shadow mb-0.5"
+                    />
+                    <p className="text-[7.5px] sm:text-[8px] font-bold tracking-[0.18em] uppercase font-display leading-tight truncate max-w-[85px]">
+                      {currentTrack.title}
+                    </p>
+                    <p className="text-[6px] sm:text-[6.5px] tracking-widest uppercase opacity-80 mt-0.5 font-mono">
+                      Side {side} • {rpm} RPM
+                    </p>
+                    <p className="text-[5px] sm:text-[5.5px] tracking-tight opacity-70 mt-0.5 font-mono truncate max-w-[80px]">
+                      {side === "A" ? currentTrack.sideA : currentTrack.sideB}
+                    </p>
+                  </div>
+
+                  {/* Center Spindle Hole */}
+                  <div className="absolute inset-0 m-auto w-3 h-3 rounded-full bg-neutral-900 border border-neutral-400 shadow-inner z-20" />
+                </div>
+              </div>
+
+              {/* Tonearm Assembly with Dynamic Live Tracking */}
+              <div
+                aria-hidden="true"
+                className="absolute -top-3 -right-2 w-28 h-40 pointer-events-none transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] origin-top-right z-30"
+                style={{
+                  transform: `rotate(${tonearmAngle}deg)`,
+                }}
+              >
+                {/* Tonearm Base / Gimbal */}
+                <div className="absolute top-0 right-3 w-8 h-8 rounded-full bg-gradient-to-b from-neutral-300 to-neutral-700 shadow-md border border-neutral-400" />
+                {/* S-Shaped Tone-Arm Tube */}
+                <div className="absolute top-4 right-6 w-1.5 h-32 bg-gradient-to-r from-neutral-200 via-neutral-400 to-neutral-600 rounded-full shadow-lg" />
+                {/* Headshell & Needle Cartridge */}
+                <div className="absolute bottom-4 right-5 w-4 h-6 bg-neutral-900 rounded-sm border border-neutral-500 shadow-md flex items-end justify-center pb-0.5">
+                  <div
+                    className={`w-1 h-1 rounded-full transition-colors duration-300 ${
+                      needleOnRecord ? "bg-emerald-400 shadow-[0_0_6px_#34d399]" : "bg-neutral-600"
+                    }`}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Live Controller, Dubplate Crate, & Frequency Equalizer */}
+          <div className="lg:col-span-5 flex flex-col justify-center gap-4">
+            
+            {/* Live Track Readout & Dynamic Audio Waveform Equalizer */}
+            <div className={`p-4 rounded-2xl border transition-colors ${
+              isDark ? "bg-black/40 border-white/10" : "bg-white/80 border-black/10"
+            }`}>
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-[10px] font-mono tracking-widest uppercase font-bold text-neutral-400">
+                  {isPlaying ? "♪ Playing From Vinyl" : "Turntable Ready"}
+                </span>
+                <span className="text-[11px] font-mono font-bold text-emerald-500">
+                  {formatTime(currentTime)} / {formatTime(duration || 197)}
+                </span>
+              </div>
+
+              {/* Track Title & Artist */}
+              <h4 className={`text-base font-display font-bold leading-tight truncate ${
+                isDark ? "text-white" : "text-neutral-900"
+              }`}>
+                {currentTrack.title}
+              </h4>
+              <p className="text-xs text-neutral-500 truncate mt-0.5 font-medium">
+                {currentTrack.artist} • {currentTrack.cat} ({currentTrack.year})
+              </p>
+
+              {/* Dynamic 14-Bar Audio Waveform Equalizer */}
+              <div className="flex items-end gap-1 h-5 mt-3 pt-1">
+                {Array.from({ length: 14 }).map((_, i) => {
+                  const h = isPlaying
+                    ? Math.max(15, Math.min(100, (vuBounce.left * (0.6 + ((i * 17) % 7) * 0.1))))
+                    : 15;
+                  return (
+                    <div
+                      key={i}
+                      className="flex-1 rounded-full transition-all duration-100 ease-out"
+                      style={{
+                        height: `${h}%`,
+                        backgroundColor:
+                          h > 80 ? "#ef4444" : h > 55 ? "#f59e0b" : "#10b981",
+                        opacity: isPlaying ? 0.9 : 0.25,
+                      }}
+                    />
+                  );
+                })}
+              </div>
+
+              {/* Interactive Audio Scrubber Bar */}
+              <div
+                onClick={(e) => {
+                  if (audioRef.current && duration > 0) {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const frac = (e.clientX - rect.left) / rect.width;
+                    audioRef.current.currentTime = frac * duration;
+                  }
+                }}
+                className="w-full h-1.5 bg-neutral-700/30 rounded-full mt-3 cursor-pointer overflow-hidden relative"
+                title="Click to scrub playback position"
+              >
+                <div
+                  className="h-full bg-emerald-500 rounded-full transition-all duration-150"
+                  style={{ width: `${progressFraction * 100}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Quick Crate Digger (Switch Dubplate Records) */}
+            <div>
+              <p className="text-[10px] tracking-widest uppercase font-mono font-bold text-neutral-400 mb-2">
+                Select Dubplate From Crate:
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                {DUBPLATE_TRACKS.map((track, i) => (
+                  <button
+                    key={track.id}
+                    type="button"
+                    onClick={() => selectDubplate(i)}
+                    className={`press-feedback flex items-center gap-2 p-2 rounded-xl border text-left transition-all duration-300 ${
+                      trackIdx === i
+                        ? isDark
+                          ? "bg-white/15 border-emerald-400/60 text-white shadow-sm"
+                          : "bg-black/10 border-emerald-600/60 text-neutral-900 shadow-sm"
+                        : isDark
+                        ? "bg-white/5 border-white/5 text-neutral-400 hover:text-white hover:bg-white/10"
+                        : "bg-black/5 border-black/5 text-neutral-600 hover:text-neutral-900 hover:bg-black/10"
+                    }`}
+                  >
+                    <img
+                      src={track.coverImg}
+                      alt={track.title}
+                      className="w-7 h-7 rounded-lg object-cover shrink-0 border border-black/20"
+                    />
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold truncate leading-tight">{track.title}</p>
+                      <p className="text-[10px] opacity-70 truncate leading-none mt-0.5">{track.artist}</p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Primary Deck Controls */}
+            <div className="flex flex-wrap items-center gap-2.5 pt-1">
+              {/* Cue Needle / Play Button */}
+              <button
+                type="button"
+                onClick={togglePlay}
+                className={`press-feedback inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold tracking-[0.15em] uppercase transition-all duration-300 shadow-md ${
+                  isPlaying
+                    ? "bg-emerald-500 text-black hover:bg-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.4)]"
+                    : isDark
+                    ? "bg-white text-black hover:bg-neutral-200"
+                    : "bg-neutral-900 text-white hover:bg-neutral-800"
+                }`}
+              >
+                {isPlaying ? <Pause size={14} className="fill-current" /> : <Play size={14} className="fill-current" />}
+                {isPlaying ? "Cue Needle (Pause)" : "Drop Needle (Play)"}
+              </button>
+
+              {/* Flip Vinyl Side Button */}
+              <button
+                type="button"
+                onClick={flipSide}
+                className={`press-feedback inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold border transition-all duration-300 ${
+                  isDark
+                    ? "border-white/15 text-neutral-200 hover:border-white/40 hover:bg-white/5"
+                    : "border-black/15 text-neutral-800 hover:border-black/40 hover:bg-black/5"
+                }`}
+                title="Flip to other side of the vinyl"
+              >
+                <RotateCw size={13} className={isFlipping ? "animate-spin" : ""} />
+                Flip to Side {side === "A" ? "B" : "A"}
+              </button>
+
+              {/* Vinyl Ambient Warmth Audio Toggle */}
+              <button
+                type="button"
+                onClick={toggleSound}
+                className={`press-feedback inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold border transition-all duration-300 ${
+                  soundEnabled
+                    ? isDark ? "border-emerald-500/40 text-emerald-400 bg-emerald-500/10" : "border-emerald-600/40 text-emerald-700 bg-emerald-600/10"
+                    : isDark ? "border-white/10 text-neutral-500" : "border-black/10 text-neutral-500"
+                }`}
+                title={soundEnabled ? "Mute vinyl surface crackle" : "Unmute vinyl surface crackle"}
+              >
+                {soundEnabled ? <Volume2 size={13} /> : <VolumeX size={13} />}
+                <span>Crackle {soundEnabled ? "ON" : "OFF"}</span>
+              </button>
+            </div>
+
+            {/* RPM Speed Selector */}
+            <div className="flex items-center gap-3 pt-1">
+              <span className="text-[10px] tracking-widest uppercase font-mono font-bold text-neutral-500">
+                Lathe Speed:
+              </span>
+              <div className="flex items-center gap-1.5">
+                {[33, 45, 78].map((speed) => (
+                  <button
+                    key={speed}
+                    type="button"
+                    onClick={() => handleRpmChange(speed)}
+                    className={`press-feedback px-3 py-1 rounded-lg font-mono text-xs font-bold transition-all duration-300 ${
+                      rpm === speed
+                        ? isDark
+                          ? "bg-white text-black shadow-md scale-105"
+                          : "bg-neutral-900 text-white shadow-md scale-105"
+                        : isDark
+                        ? "bg-white/5 text-neutral-400 hover:text-white"
+                        : "bg-black/5 text-neutral-600 hover:text-neutral-900"
+                    }`}
+                  >
+                    {speed} RPM
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Runout Deadwax Matrix & Discrete Staff Portal Link */}
+            <div className={`pt-2 border-t flex items-center justify-between text-[10px] font-mono ${
+              isDark ? "border-white/10 text-neutral-500" : "border-black/10 text-neutral-400"
+            }`}>
+              <div className="flex items-center gap-2">
+                <Disc3 size={12} className="opacity-60" />
+                <span>MATRIX: {currentTrack.cat} // CUT #{trackIdx + 1}</span>
+              </div>
+
+              {/* Discrete Staff / Admin Portal Access (Hidden from casual view) */}
+              <button
+                type="button"
+                onClick={() => {
+                  setView("admin");
+                  window.scrollTo(0, 0);
+                }}
+                title="Internal Management Portal"
+                className={`inline-flex items-center gap-1 opacity-40 hover:opacity-100 transition-opacity duration-300 ${
+                  isDark ? "hover:text-emerald-400" : "hover:text-emerald-600"
+                }`}
+                aria-label="Staff Access"
+              >
+                <Lock size={10} />
+                <span className="text-[9px]">Staff Portal</span>
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   );
 });
+
 const Footer = memo(function Footer({ setView }) {
   const { isDark } = useTheme();
   const go = (id) => {
@@ -3127,19 +3853,12 @@ const Footer = memo(function Footer({ setView }) {
   };
   const colHead = "text-xs tracking-[0.25em] uppercase text-neutral-500 mb-6 font-semibold";
 
-  // Add your LinkedIn URLs here!
-  const developers = [
-    { name: "Mayur ", url: "https://www.linkedin.com/in/syed-mayur-haque-b2063a288?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
-    { name: "Himan ", url: "https://www.linkedin.com/in/himan-kashyap-1278492a1" },
-    { name: "Ihsan", url: "https://www.linkedin.com/in/ihsan-zaman-a8a85433b/" },
-  ];
-
   return (
     <footer className={`relative z-10 mt-24 md:mt-40 backdrop-blur-xl pb-24 lg:pb-0 ${isDark ? "bg-black/60" : "bg-white/70"}`}>
       <div aria-hidden="true" className={`h-px bg-gradient-to-r from-transparent to-transparent ${isDark ? "via-white/20" : "via-black/15"}`} />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-16 md:pt-24 pb-10 md:pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12 md:gap-y-14 mb-14 md:mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12 md:gap-y-14 mb-14 md:mb-16">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-6">
               <img src={myLogo} alt="Wildwood Records Logo" className={`w-11 h-11 object-contain ${isDark ? "" : "brightness-0"}`} />
@@ -3218,25 +3937,40 @@ const Footer = memo(function Footer({ setView }) {
           </div>
         </div>
 
-        <div className={`pt-8 border-t flex flex-col-reverse lg:flex-row items-center justify-between gap-8 md:gap-4 text-xs ${isDark ? "border-white/10 text-neutral-500" : "border-neutral-200 text-neutral-500"}`}>
+        {/* ------------------------------------------------------------------ */}
+        {/* INTERACTIVE UNDERGROWTH VINYL LATHE (Replaces profile badges)      */}
+        {/* ------------------------------------------------------------------ */}
+        <div className={`pt-6 border-t ${isDark ? "border-white/10" : "border-black/10"}`}>
+          <UndergrowthVinylLathe setView={setView} />
+        </div>
 
-          {/* LEFT: Copyright */}
-          <div className="flex-1 w-full lg:w-auto text-center lg:text-left">
+        {/* ------------------------------------------------------------------ */}
+        {/* FOOTER BOTTOM BAR: Copyright & Renamed Legal Links                  */}
+        {/* ------------------------------------------------------------------ */}
+        <div className={`mt-8 pt-8 border-t flex flex-col-reverse lg:flex-row items-center justify-between gap-6 md:gap-4 text-xs ${isDark ? "border-white/10 text-neutral-500" : "border-neutral-200 text-neutral-500"}`}>
+
+          {/* LEFT: Copyright + Discrete Staff Access */}
+          <div className="flex-1 w-full lg:w-auto text-center lg:text-left flex items-center justify-center lg:justify-start gap-1">
             <span className="font-medium tracking-wide">
               &copy; {new Date().getFullYear()} Wildwood Records. All rights reserved.
             </span>
+            <button
+              onClick={() => go("admin")}
+              title="Staff Portal"
+              aria-label="Staff Portal"
+              className={`p-1 opacity-20 hover:opacity-100 transition-opacity duration-300 ${isDark ? "text-neutral-400 hover:text-white" : "text-neutral-600 hover:text-black"}`}
+            >
+              <Lock size={10} />
+            </button>
           </div>
 
-          {/* CENTER: Legal Links */}
+          {/* CENTER: Renamed Legal Links */}
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-[10px] font-bold tracking-[0.2em] uppercase">
             <button onClick={() => go("privacy")} className={`ftr-link transition-colors duration-500 ${isDark ? "hover:text-white" : "hover:text-neutral-900"}`}>
-              Privacy
+              Privacy Policy
             </button>
             <button onClick={() => go("terms")} className={`ftr-link transition-colors duration-500 ${isDark ? "hover:text-white" : "hover:text-neutral-900"}`}>
-              Terms
-            </button>
-            <button onClick={() => go("admin")} className={`ftr-link transition-colors duration-500 ${isDark ? "hover:text-white" : "hover:text-neutral-900"}`}>
-              Admin
+              Terms &amp; Conditions
             </button>
           </div>
 
@@ -3248,17 +3982,6 @@ const Footer = memo(function Footer({ setView }) {
             </span>
           </div>
         </div>
-
-        {/* ------------------------------------------------------------------ */}
-        {/* PREMIUM DEVELOPER CREDITS PILL                                     */}
-        {/* ------------------------------------------------------------------ */}
-        {/* ------------------------------------------------------------------ */}
-        {/* PREMIUM DEVELOPER CREDITS PILL                                     */}
-        {/* ------------------------------------------------------------------ */}
-        <div className={`mt-14 md:mt-20 pt-10 border-t flex justify-center w-full ${isDark ? "border-white/5" : "border-black/5"}`}>
-          <DevCreditsBadge developers={developers} />
-        </div>
-        {/* ------------------------------------------------------------------ */}
 
       </div>
     </footer>
